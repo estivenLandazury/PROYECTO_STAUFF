@@ -1,0 +1,26 @@
+<form (ngSubmit)="updateUser()">
+    <div class="container">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Nombre</label>
+          <input type="text" name="nombre" class="form-control" id="inputEmail4" placeholder="Inserte su nombre"
+            [(ngModel)]="nombre">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Identificación</label>
+          <input type="number" name="identificador" class="form-control" id="inputPassword4" placeholder="Inserte su ID"
+            [(ngModel)]="identificador">
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="inputAddress">Apellido</label>
+        <input type="text" name="apellido" class="form-control" id="inputAddress" placeholder="Inserte su apellido"
+          [(ngModel)]="apellido">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      
+  
+    </div>
+  
+  
+  </form>

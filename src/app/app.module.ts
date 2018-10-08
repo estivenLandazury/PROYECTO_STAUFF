@@ -1,16 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './Components/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import {RoutedComponents } from './app-routing.module';
+import { SesionComponent } from './Components/sesion/sesion.component';
+import {ServiciosService} from './dataServices/servicios.service';
+import { HttpClientModule } from '@angular/common/http';
+import {Http, HttpModule } from '@angular/http';
+import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.component';
+import { UpdateUsersComponent } from './Components/update-users/update-users.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RoutedComponents,
+    SesionComponent,
+    UsuarioAddComponent,
+    UpdateUsersComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HttpModule,
+    FormsModule
+    
   ],
-  providers: [],
+  providers: [ServiciosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
