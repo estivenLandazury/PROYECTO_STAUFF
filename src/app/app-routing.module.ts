@@ -3,16 +3,21 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from './Components/login/login.component';
 import { SesionComponent } from './Components/sesion/sesion.component';
 import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.component';
-import {UpdateUsersComponent} from './Components/update-users/update-users.component';
+import { UpdateUsersComponent } from './Components/update-users/update-users.component';
 
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: 'sesion', pathMatch: 'full' },
+    { path: '', redirectTo: 'Login', pathMatch: 'full' },
     { path: 'Login', component: LoginComponent },
-    { path: 'Sesion', component: SesionComponent },
-    { path: 'Añadir_Usuario', component: UsuarioAddComponent},
-    { path: 'Actualizar_Usuario', component: UpdateUsersComponent},
-    
+    {
+        path: 'Sesion', component: SesionComponent,
+        children: [
+            { path: 'Añadir_Usuario', component: UsuarioAddComponent },
+            { path: 'Actualizar_Usuario', component: UpdateUsersComponent },
+
+        ]
+    },
+
     { path: '**', redirectTo: 'sesion' }
 
     /*{

@@ -23,13 +23,13 @@ export class ServiciosService {
   }*/
 
   getUsuarios():Observable<Usuario[]>{
-    return this.htpp.get<Usuario[]>('http://localhost:8000/usuario');
+    return this.htpp.get<Usuario[]>('http://192.168.0.21:8080/usuario');
   }
 
   
   deleteUsuario(id: number): Observable<Usuario>{
     /* const url ='${"http://localhost:8000/usuario"}/$id';*/
-    return this.htpp.delete<Usuario>('http://localhost:8000/usuarios/'+id).pipe(
+    return this.htpp.delete<Usuario>('http://192.168.0.21:8080/usuarios/'+id).pipe(
       tap(_ => console.log(`Se elimino el usuario id=${id}`)),
     );
 
@@ -42,7 +42,7 @@ export class ServiciosService {
 updateUser (user: Usuario): Observable<any> {
   console.log("este es el servicio update"+ user.Identificador);
 
-  return this.htpp.put('http://localhost:8000/usuarios/'+user.Identificador, user).pipe(
+  return this.htpp.put('http://192.168.0.21:8080/usuarios/'+user.Identificador, user).pipe(
     tap(_ => console.log(`updated  id=${user.Identificador}`)),
   );
    
@@ -51,7 +51,7 @@ updateUser (user: Usuario): Observable<any> {
 
 
 añadirUsuario (user: Usuario): Observable<Usuario> {
-  return this.htpp.post<Usuario>('http://localhost:8000/usuario', user).pipe(
+  return this.htpp.post<Usuario>('http://192.168.0.21:8080/usuario', user).pipe(
     tap(_ => console.log(`añadido el usuario  id=${user.Identificador}`)),
    
   );

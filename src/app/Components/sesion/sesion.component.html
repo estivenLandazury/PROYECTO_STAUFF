@@ -21,9 +21,55 @@
 </head>
 
 <body>
-  <p>
-    <a [routerLink]="['/Login']" class="btn-primary mr-3"> Vamos a Login</a>
-  </p>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-3">
+
+      <a class="navbar-brand" href="#"><i class="fas fa-audio-description"></i>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Información
+              </button>
+
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" routerLink="/administrador/AñadirProyecto">Añadir Proyectos</a>
+
+                <!-- <a class="dropdown-item" href="#" routerLink="/administrador/ProyectosTerminados"> Proyectos Terminados</a> -->
+                <a class="dropdown-item" href="#" routerLink="/administrador/ProyectosIncompletos"> Proyectos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Cerrar Sesión</a>
+              </div>
+            </div>
+          </li>
+
+
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <ul class="navbar-nav ml-auto">
+
+
+            <li class="nav-item active">
+              <input class="form-control mr-sm-2" type="search" placeholder="nombre Proyecto" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </li>
+
+          </ul>
+        </form>
+      </div>
+    </div>
+  </nav>
 
 
 
@@ -31,11 +77,12 @@
 
   <table class="table table-hover">
     <thead>
-        <tr>
-            <th scope="col">Identificador</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-          </tr>
+      <tr>
+        <th scope="col">Identificador</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Acción</th>
+      </tr>
 
     </thead>
     <tbody>
@@ -43,23 +90,28 @@
         <td> {{users.Identificador}}</td>
         <td> {{users.nombre}}</td>
         <td> {{users.apellido}}</td>
-        <a [routerLink]="['/Actualizar_Usuario']" class="btn btn-primary ml-3">Editar</a>
+        <td> <a [routerLink]="['/Sesion/Actualizar_Usuario']" class="btn btn-primary ml-3">Editar</a>
 
-        <button class="btn btn-danger ml-3" (click)="delete(event, users)">Eliminar</button>
-        <a [routerLink]="['/Añadir_Usuario']" class="btn btn-success ml-3">Agregar</a>
+          <button class="btn btn-danger ml-3" (click)="delete(event, users)">Eliminar</button>
+          <a [routerLink]="['/Sesion/Añadir_Usuario']" class="btn btn-success ml-3">Agregar</a>
+        </td>
 
       </tr>
 
     </tbody>
   </table>
 
-  
+
 
 
   <router-outlet> </router-outlet>
 
 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
 
 </body>
 

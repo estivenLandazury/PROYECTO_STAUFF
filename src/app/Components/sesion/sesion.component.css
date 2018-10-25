@@ -1,0 +1,15 @@
+.navbar-custom{
+	background-color: #2C3E50;
+	color:black;
+}
+
+
+table.table.table-hover {
+    margin-top: 10%;
+}
+
+button.btn.btn-outline-success.my-2.my-sm-0 {
+    background: #f3eaea;
+    color: #2f2a2a;
+    border-color: #d6bcbc;
+}
