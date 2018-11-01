@@ -12,6 +12,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 */
 const  httpOptions= {headers: new HttpHeaders({ 'Content-Type': 'application/jason' })};
+const CONEXION=" http://127.0.0.1:8000/";
 
 @Injectable()
 export class ServiciosService {
@@ -23,13 +24,13 @@ export class ServiciosService {
   }*/
 
   getUsuarios():Observable<Usuario[]>{
-    return this.htpp.get<Usuario[]>('http://192.168.0.21:8080/usuario');
+    return this.htpp.get<Usuario[]>( CONEXION+'usuario');
   }
 
   
   deleteUsuario(id: number): Observable<Usuario>{
     /* const url ='${"http://localhost:8000/usuario"}/$id';*/
-    return this.htpp.delete<Usuario>('http://192.168.0.21:8080/usuarios/'+id).pipe(
+    return this.htpp.delete<Usuario>(CONEXION+'usuarios/'+id).pipe(
       tap(_ => console.log(`Se elimino el usuario id=${id}`)),
     );
 
@@ -42,7 +43,7 @@ export class ServiciosService {
 updateUser (user: Usuario): Observable<any> {
   console.log("este es el servicio update"+ user.Identificador);
 
-  return this.htpp.put('http://192.168.0.21:8080/usuarios/'+user.Identificador, user).pipe(
+  return this.htpp.put(CONEXION+'usuarios/'+user.Identificador, user).pipe(
     tap(_ => console.log(`updated  id=${user.Identificador}`)),
   );
    
@@ -51,7 +52,7 @@ updateUser (user: Usuario): Observable<any> {
 
 
 añadirUsuario (user: Usuario): Observable<Usuario> {
-  return this.htpp.post<Usuario>('http://192.168.0.21:8080/usuario', user).pipe(
+  return this.htpp.post<Usuario>(CONEXION+'usuario', user).pipe(
     tap(_ => console.log(`añadido el usuario  id=${user.Identificador}`)),
    
   );

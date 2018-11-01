@@ -1,28 +1,106 @@
-<form (ngSubmit)="addUser()">
-  <div class="container">
+<!DOCTYPE  html>
+<html>
 
-      <div> <p class="font-weight-bold">Añadir Usuarios.</p></div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Nombre</label>
-        <input type="text" name="nombre" class="form-control" id="inputEmail4" placeholder="Inserte su nombre"
-          [(ngModel)]="nombre">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Curriculom</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+  <!-- iconos-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+    crossorigin="anonymous">
+
+  <link rel="icon" type="image/png" href="https://previews.123rf.com/images/ylivdesign/ylivdesign1710/ylivdesign171001798/87385395-lupa-sobre-el-curr%C3%ADculum-vita-icon-digital-red.jpg" />
+
+
+
+
+</head>
+
+<body>
+
+  <form (ngSubmit)="addUser()">
+
+
+    <div class="container">
+  <!--   Formulario Registro usuario-->
+      <div>
+        <p id="Añdir" class="font-weight-bold">Añadir Usuarios.</p>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Identificación</label>
-        <input type="number" name="identificador" class="form-control" id="inputPassword4" placeholder="Inserte su ID"
-          [(ngModel)]="identificador">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Nombre</label>
+          <input type="text" name="nombre" class="form-control" id="inputEmail4" placeholder="Inserte su nombre"
+            [(ngModel)]="nombre">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Identificación</label>
+          <input type="number" name="identificador" class="form-control" id="inputPassword4" placeholder="Inserte su ID"
+            [(ngModel)]="identificador">
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="inputAddress">Apellido</label>
+        <input type="text" name="apellido" class="form-control" id="inputAddress" placeholder="Inserte su apellido"
+          [(ngModel)]="apellido">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+
+
+    </div>
+
+<!---  Formulario Registro del encargado -->
+
+<div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Collapsible Group Item #1
+          </button>
+        </h5>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
       </div>
     </div>
-    <div class="form-group ">
-      <label for="inputAddress">Apellido</label>
-      <input type="text" name="apellido" class="form-control" id="inputAddress" placeholder="Inserte su apellido"
-        [(ngModel)]="apellido">
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Collapsible Group Item #2
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    
-
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Collapsible Group Item #3
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
   </div>
+  </form>
+</body>
 
-
-</form>
+</html>

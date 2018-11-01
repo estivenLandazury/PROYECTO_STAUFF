@@ -3,9 +3,19 @@
 	color:black;
 }
 
-
+div#tableScroll {
+    overflow: scroll;
+    height: 260%;
+    width: 755px;
+    margin-top: 3%;
+}
 table.table.table-hover {
-    margin-top: 10%;
+    margin-top: 0%;
+}
+
+
+p#listaUsuarios {
+    font-size: 149%;
 }
 
 button.btn.btn-outline-success.my-2.my-sm-0 {

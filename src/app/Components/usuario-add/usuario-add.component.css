@@ -1,9 +1,14 @@
 .container {
     width: 71%;
-    margin-top: 8%
+    margin-top: 1%
 }
 
 p.font-weight-bold {
     text-align: center;
     font-size: 146%;
 }
+
+div#accordion {
+    margin-top: 4%;
+}
+

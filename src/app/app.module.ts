@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {Http, HttpModule } from '@angular/http';
 import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.component';
 import { UpdateUsersComponent } from './Components/update-users/update-users.component';
+import { AdminComponent } from './Components/admin/admin.component';
+import { PerfilComponent } from './Components/perfil/perfil.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { UpdateUsersComponent } from './Components/update-users/update-users.com
     SesionComponent,
     UsuarioAddComponent,
     UpdateUsersComponent,
+    AdminComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

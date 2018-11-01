@@ -14,6 +14,8 @@ export class UsuarioAddComponent implements OnInit {
   nombre:string;
   apellido:string;
 
+  succesMessage: string;
+
   constructor(private ServiciosService: ServiciosService) { 
 
     
@@ -24,6 +26,9 @@ export class UsuarioAddComponent implements OnInit {
  
   addUser() {
     this.ServiciosService.añadirNuevoUsuario(this.identificador,this.nombre, this.apellido);
+   
+
+
 
   }
 
