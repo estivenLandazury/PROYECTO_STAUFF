@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Usuario } from './usuario';
+import { Usuario } from '../models/usuario';
+import {TipoDocumento} from '../models/tipoDocumento';
+import {TipoUsuario} from '../models/tipoUsuario'
 import { Observable } from 'rxjs';
 import { promise } from 'protractor';
 import { catchError, tap } from 'rxjs/operators';
@@ -12,7 +14,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 */
 const  httpOptions= {headers: new HttpHeaders({ 'Content-Type': 'application/jason' })};
-const CONEXION=" http://127.0.0.1:8000/";
+const CONEXION="http://127.0.0.1:8000/";
 
 @Injectable()
 export class ServiciosService {
@@ -24,13 +26,23 @@ export class ServiciosService {
   }*/
 
   getUsuarios():Observable<Usuario[]>{
-    return this.htpp.get<Usuario[]>( CONEXION+'usuario');
+    return this.htpp.get<Usuario[]>( CONEXION+'usuarios');
   }
 
+  getTipoDocumentos(): Observable<TipoDocumento[]>{
+    return this.htpp.get<TipoDocumento[]>(CONEXION+'Tipodocumentos');
+  }
+
+
+  getTipoUsuarios(): Observable<TipoUsuario[]>{
+    return this.htpp.get<TipoUsuario[]>(CONEXION+'tipoUsuarios');
+  }
   
-  deleteUsuario(id: number): Observable<Usuario>{
+
+  
+  deleteUsuario(id: string): Observable<Usuario>{
     /* const url ='${"http://localhost:8000/usuario"}/$id';*/
-    return this.htpp.delete<Usuario>(CONEXION+'usuarios/'+id).pipe(
+    return this.htpp.delete<Usuario>(CONEXION+'usuario/'+id).pipe(
       tap(_ => console.log(`Se elimino el usuario id=${id}`)),
     );
 
@@ -43,7 +55,7 @@ export class ServiciosService {
 updateUser (user: Usuario): Observable<any> {
   console.log("este es el servicio update"+ user.Identificador);
 
-  return this.htpp.put(CONEXION+'usuarios/'+user.Identificador, user).pipe(
+  return this.htpp.put(CONEXION+'usuario/'+user.Identificador, user).pipe(
     tap(_ => console.log(`updated  id=${user.Identificador}`)),
   );
    
@@ -59,21 +71,29 @@ añadirUsuario (user: Usuario): Observable<Usuario> {
   
 }
 
-actualizarUsuario(identificador:number, nomb:string, apell:string){
+actualizarUsuario(identificador:string, nomb:string, apell:string,numeroDoc:string,fechaNaci:Date){
   let user:Usuario={
     Identificador:identificador,
     nombre:nomb,
-    apellido:apell
+    apellido:apell,
+    numeroDocumento:numeroDoc,
+    fechaNacimiento:fechaNaci,
+    encargado:[]
+
   };
   this.updateUser(user).subscribe();
 
 }
 
-añadirNuevoUsuario( identificador:number, nomb:string, apell:string){
+añadirNuevoUsuario( identificador:string, nomb:string, apell:string, numeroDoc:string,fechaNaci:Date,){
   let user:Usuario={
     Identificador:identificador,
     nombre:nomb,
-    apellido:apell
+    apellido:apell,
+    numeroDocumento:numeroDoc,
+    fechaNacimiento:fechaNaci,
+    encargado:[]
+
   };
   this.añadirUsuario(user).subscribe();
 }

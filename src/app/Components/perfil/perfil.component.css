@@ -1,3 +1,16 @@
 p#perfil {
-    font-size: 118%;
+    font-size: 192%;
+    margin-top: 9%;
+}
+
+.panel.panel-default {
+    margin-top: 3%;
+}
+
+div#accionPerfil {
+    text-align: center;
+}
+
+button.btn.btn-danger {
+    margin-left: 6%;
 }

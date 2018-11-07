@@ -27,7 +27,8 @@
 
 
     <div class="container">
-  <!--   Formulario Registro usuario-->
+      <!--   Formulario Registro usuario-->
+      <!--   
       <div>
         <p id="Añdir" class="font-weight-bold">Añadir Usuarios.</p>
       </div>
@@ -48,59 +49,249 @@
         <input type="text" name="apellido" class="form-control" id="inputAddress" placeholder="Inserte su apellido"
           [(ngModel)]="apellido">
       </div>
-      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button  type="submit" class="btn btn-primary">Guardar</button>
 
+     
+           -->
 
-    </div>
-
-<!---  Formulario Registro del encargado -->
-
-<div id="accordion">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Collapsible Group Item #1
-          </button>
-        </h5>
+      <div>
+        <p id="perfil" class="text-center"> <strong>Añadir Usuario</strong></p>
       </div>
-  
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+      <div class="panel panel-default">
+
+        <div class="form-group row">
+          <label for="example" class="col-2 col-form-label">Nombre</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" placeholder="Ingrese su nombre" d="example">
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Collapsible Group Item #2
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <div class="form-group row">
+          <label for="texto" class="col-2 col-form-label">Apellido</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" placeholder="Ingrese su apellido" id="texto-1">
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Collapsible Group Item #3
-          </button>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <div class="form-group row">
+          <label for="example-url-input" class="col-2 col-form-label">Número Documento</label>
+          <div class="col-10">
+            <input class="form-control" type="url" value="" placeholder="Ingrese su número de documento" id="example-url-input">
+          </div>
         </div>
+
+        <div class="form-group row">
+          <label for="example-url-input" class="col-2 col-form-label">Tipo Documento</label>
+          <div class="col-10">
+            <select class="form-control">
+              <option *ngFor="let users of tipoDocumento" value="+47">{{users.nombreDocumento}}</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="cuenta" class="col-2 col-form-label">Correo</label>
+          <div class="col-10">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="example-password-input" class="col-2 col-form-label">Clave</label>
+          <div class="col-10">
+            <input class="form-control" type="password" value="" id="example-password-input" placeholder="Ingrese la clave">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="tipoUsu" class="col-2 col-form-label">Tipo Usuario</label>
+          <div class="col-10">
+            <select class="form-control" id="tipoUsu">
+             <option *ngFor="let users of tipoUsuario" value="+47">{{users.nombreRol}}</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="example-date-input" class="col-2 col-form-label">Fecha nacimiento</label>
+          <div class="col-10">
+            <input class="form-control" type="date" value="" id="1" placeholder="ingresa la fecha de nacimiento">
+          </div>
+        </div>
+
+        <div>
+
+          <button id="añadirUsuario" type="button" class="btn btn-success">Añadir Usuario</button>
+        </div>
+
+        <!---  Formulario Registro del encargado -->
+
+        <!-- Acordion1-->
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                  aria-controls="collapseOne">
+                  Asociar Usuarios
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Encargado</label>
+                  <div class="col-10">
+                    <select class="form-control">
+                      <option value="+47">Norge (+47)</option>
+                      <option value="+46">Sverige (+46)</option>
+                      <option value="+45">Danmark (+45)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Encargado de</label>
+                  <div class="col-10">
+                    <select class="form-control">
+                      <option value="+47">Norge (+47)</option>
+                      <option value="+46">Sverige (+46)</option>
+                      <option value="+45">Danmark (+45)</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="example-date-input" class="col-2 col-form-label">Fecha Registro</label>
+                  <div class="col-10">
+                    <input class="form-control" type="date" value="" id="2" placeholder="">
+                  </div>
+                </div>
+
+              </div>
+
+              <div id="accionPerfil" mx-4>
+                <button type="button" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-danger">Cancelar</button>
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Acoordion número 2-->
+        <div id="accordion">
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                  aria-controls="collapseTwo">
+                  Añadir Dispositivo
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+
+                <!--  ingresar la manilla a la base de datos-->
+                <!-- Mac-Id de la manilla-->
+                <div class="form-group row">
+                  <label for="texto" class="col-2 col-form-label">Mac-Id</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" value="" placeholder="Ingrese la mac del dispositivo" id="texto-2">
+                  </div>
+                </div>
+                <!-- Nombre del dispositivo-->
+                <div class="form-group row">
+                  <label for="texto" class="col-2 col-form-label">Nombre del dispositivo</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" value="" placeholder="Ingrese el nombre del dispositivo" id="texto-3">
+                  </div>
+                </div>
+
+                <div id="accionManilla" mx-4>
+                  <button type="button" class="btn btn-success">Guardar</button>
+                  <button type="button" class="btn btn-danger">Cancelar</button>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                  aria-expanded="false" aria-controls="collapseThree">
+                  Asociar Dispositivo
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+
+
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Usuario</label>
+                  <div class="col-10">
+                    <select class="form-control">
+                      <option value="+47">Norge (+47)</option>
+                      <option value="+46">Sverige (+46)</option>
+                      <option value="+45">Danmark (+45)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Dispositivo</label>
+                  <div class="col-10">
+                    <select class="form-control">
+                      <option value="+47">Norge (+47)</option>
+                      <option value="+46">Sverige (+46)</option>
+                      <option value="+45">Danmark (+45)</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="example-date-input" class="col-2 col-form-label">Fecha Registro</label>
+                  <div class="col-10">
+                    <input class="form-control" type="date" value="" id="3" placeholder="">
+                  </div>
+                </div>
+
+                <div id="asociarManilla" mx-4>
+                  <button type="button" class="btn btn-success">Guardar</button>
+                  <button type="button" class="btn btn-danger">Cancelar</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
+
+
     </div>
-  </div>
   </form>
 </body>
+
+
+
 
 </html>

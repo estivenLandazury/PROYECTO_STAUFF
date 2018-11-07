@@ -4,7 +4,6 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> Curriculom</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -24,8 +23,7 @@
 <body>
 
   
-<div>   
-
+<div id="TitleTable">   
   <p class="text-center"id="listaUsuarios"> <strong> Lsita de Usuarios</strong></p>
 </div>
 
@@ -46,10 +44,10 @@
         <td> {{users.Identificador}}</td>
         <td> {{users.nombre}}</td>
         <td> {{users.apellido}}</td>
-        <td> <a [routerLink]="['/Sesion/Actualizar_Usuario']" class="btn btn-primary ml-3">Editar</a>
+        <td> <a [routerLink]="['/Admin/Actualizar_Usuario']" class="btn btn-primary ml-3">Editar</a>
 
           <button class="btn btn-danger ml-3" (click)="delete(event, users)">Eliminar</button>
-          <a [routerLink]="['/Sesion/Añadir_Usuario']" class="btn btn-success ml-3">Agregar</a>
+          <a  [routerLink]="['/Admin/Añadir_Usuario']" class="btn btn-success ml-3">Agregar</a>
         </td>
 
       </tr>

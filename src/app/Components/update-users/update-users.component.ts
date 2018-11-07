@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../dataServices/usuario';
+import { Usuario } from '../../models/usuario';
+import { Encargado } from '../../models/encargado';
 import { ServiciosService }  from '../../dataServices/servicios.service';
 
 @Component({
@@ -10,9 +11,13 @@ import { ServiciosService }  from '../../dataServices/servicios.service';
 export class UpdateUsersComponent implements OnInit {
 
 
-  identificador: number;
+  identificador: string;
   nombre:string;
   apellido:string;
+  numeroDocumento:string;
+  fechaNacimiento:Date
+  encargado:Encargado[]
+
  
   constructor(private ServiciosService: ServiciosService) { 
 
@@ -20,7 +25,8 @@ export class UpdateUsersComponent implements OnInit {
   }
 
   updateUser(){
-    this.ServiciosService.actualizarUsuario(this.identificador,this.nombre, this.apellido);
+    this.ServiciosService.actualizarUsuario(this.identificador,this.nombre, this.apellido,this.numeroDocumento,
+      this.fechaNacimiento);
 
   }
 
