@@ -1,15 +1,42 @@
 .navbar-custom{
-	background-color: #2C3E50;
+	background-color: #2C3E50 !important;
     color:black;
 }
+
 
 
 i.fas.fa-user-circle {
     width: 37%;
     height: 36%;
     font-size: 249%;
-    color: white;
+    color: #2C3E50;
 }
+
+
+mat-sidenav.example-container.mat-drawer.mat-sidenav.ng-tns-c3-0.ng-trigger.ng-trigger-transform.mat-drawer-side.ng-star-inserted 
+{
+  background: #2c3e50 !important;
+  color: white;
+}
+
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: .25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: white;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+
+
+
+
 
 
 

@@ -7,6 +7,10 @@ p#perfil {
     margin-top: 3%;
 }
 
+.container {
+    margin-top: -5%;
+}
+
 div#accionPerfil {
     text-align: center;
 }

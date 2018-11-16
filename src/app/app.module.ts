@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCheckboxModule, MatSidenavModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -14,6 +16,8 @@ import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.compon
 import { UpdateUsersComponent } from './Components/update-users/update-users.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { PerfilComponent } from './Components/perfil/perfil.component';
+import { AlertComponent } from './Components/alert/alert.component';
+import { AuthGuard } from './Components/auth/auth.guard';
 
 
 @NgModule({
@@ -26,16 +30,20 @@ import { PerfilComponent } from './Components/perfil/perfil.component';
     UpdateUsersComponent,
     AdminComponent,
     PerfilComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule, 
+    MatSidenavModule
     
   ],
-  providers: [ServiciosService],
+  providers: [ServiciosService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

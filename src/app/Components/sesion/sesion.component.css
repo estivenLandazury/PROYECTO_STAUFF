@@ -1,7 +1,9 @@
-.navbar-custom{
-	background-color: #2C3E50;
-	color:black;
+
+.container {
+    margin-top: -5%;
 }
+
+
 
 div#tableScroll {
     overflow: scroll;

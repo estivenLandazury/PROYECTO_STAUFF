@@ -3,17 +3,26 @@ import { Http, Headers, Response } from '@angular/http';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
 import {TipoDocumento} from '../models/tipoDocumento';
-import {TipoUsuario} from '../models/tipoUsuario'
+import {TipoUsuario} from '../models/tipoUsuario';
+import{Manilla} from '../models/manilla';
+import{UsuarioDocumento} from '../models/usuarioDocumento';
+import {User} from '../models/user';
+
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
+
 import { promise } from 'protractor';
 import { catchError, tap } from 'rxjs/operators';
+import { RolUsuario } from '../models/rolUsuario';
+import {Alarma} from '../models/alarma';
+import { Encargado } from '../models/encargado';
 
 /*
 @Injectable({
   providedIn: 'root'
 })
 */
-const  httpOptions= {headers: new HttpHeaders({ 'Content-Type': 'application/jason' })};
+const  httpOptions= {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 const CONEXION="http://127.0.0.1:8000/";
 
 @Injectable()
@@ -24,6 +33,7 @@ export class ServiciosService {
   /*getUsuarios() {
     return this.htpp.get<Usuario[]>('http://localhost:8000/usuario?format=json');
   }*/
+
 
   getUsuarios():Observable<Usuario[]>{
     return this.htpp.get<Usuario[]>( CONEXION+'usuarios');
@@ -37,6 +47,18 @@ export class ServiciosService {
   getTipoUsuarios(): Observable<TipoUsuario[]>{
     return this.htpp.get<TipoUsuario[]>(CONEXION+'tipoUsuarios');
   }
+
+  getManillas(): Observable<Manilla[]>{
+    return this.htpp.get<Manilla[]>(CONEXION+'Manillas');
+  }
+
+  getAlarmas():Observable<Alarma[]>{
+  return this.htpp.get<Alarma[]>(CONEXION+'Alarmas');
+  }
+
+
+
+
   
 
   
@@ -63,8 +85,31 @@ updateUser (user: Usuario): Observable<any> {
 }
 
 
+
+establecerSesioUsuarip(user):Observable<User>{
+ let url= CONEXION+'Autenticade';
+return this.htpp.post<User>(url,user,httpOptions);
+}
+
+
+
+
+añadirRolUsuario(rol:RolUsuario):Observable<RolUsuario> {
+  return this.htpp.post<RolUsuario>(CONEXION+'rolUsuarios', rol)
+
+}
+
+añadirDispositivo(dis:Manilla):Observable<Manilla>{
+return this.htpp.post<Manilla>(CONEXION+'Manillas', dis)
+}
+
+añadirUsuarioDocumento(UsDoc:UsuarioDocumento):Observable<UsuarioDocumento> {
+  return this.htpp.post<UsuarioDocumento>(CONEXION+'UsuarioDocumentos', UsDoc)
+
+}
+
 añadirUsuario (user: Usuario): Observable<Usuario> {
-  return this.htpp.post<Usuario>(CONEXION+'usuario', user).pipe(
+  return this.htpp.post<Usuario>(CONEXION+'usuarios', user).pipe(
     tap(_ => console.log(`añadido el usuario  id=${user.Identificador}`)),
    
   );
@@ -78,25 +123,13 @@ actualizarUsuario(identificador:string, nomb:string, apell:string,numeroDoc:stri
     apellido:apell,
     numeroDocumento:numeroDoc,
     fechaNacimiento:fechaNaci,
-    encargado:[]
 
   };
   this.updateUser(user).subscribe();
 
 }
 
-añadirNuevoUsuario( identificador:string, nomb:string, apell:string, numeroDoc:string,fechaNaci:Date,){
-  let user:Usuario={
-    Identificador:identificador,
-    nombre:nomb,
-    apellido:apell,
-    numeroDocumento:numeroDoc,
-    fechaNacimiento:fechaNaci,
-    encargado:[]
 
-  };
-  this.añadirUsuario(user).subscribe();
-}
 
 
 

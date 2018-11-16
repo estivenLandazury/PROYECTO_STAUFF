@@ -1,0 +1,71 @@
+
+body {
+    width: 94%;
+    margin-left: 2%;
+}
+
+.panel-heading {
+    background: #2e6197;
+    color: white;
+}
+
+i.fa.fa-comments.fa-5x {
+    background: #2e6197;
+}
+
+
+.panel-green {
+    border-color: #5cb85c;
+  }
+
+  i.fa.fa-tasks.fa-5x {
+    width: 79%;
+    background: #5cb85c;
+}
+  .panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: white;
+    background-color: #5cb85c;
+  }
+  .panel-green > a {
+    color: #5cb85c;
+  }
+  .panel-green > a:hover {
+    color: #3d8b3d;
+  }
+  .panel-red {
+    border-color: #d9534f;
+  }
+  .panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: white;
+    background-color: #d9534f;
+  }
+  .panel-red > a {
+    color: #d9534f;
+  }
+  .panel-red > a:hover {
+    color: #b52b27;
+  }
+
+  i.fas.fa-exclamation-triangle.fa-5x {
+    background: #d9534f;
+}
+  .panel-yellow {
+    border-color: #f0ad4e;
+  }
+
+  i.fa.fa-shopping-cart.fa-5x {
+    background: #f0ad4e;
+}
+  .panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: white;
+    background-color: #f0ad4e;
+  }
+  .panel-yellow > a {
+    color: #f0ad4e;
+  }
+  .panel-yellow > a:hover {
+    color: #df8a13;
+  }

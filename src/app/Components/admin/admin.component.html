@@ -18,51 +18,56 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container px-3">
-
-     
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-          <!-- Item al lado izquierdo de la pantalla-->
-          <li class="nav-item">
-            <div class="dropdown">
-
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Menu De Información
-              </a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#" [routerLink]="['/Admin/Perfil']"><span class="glyphicon glyphicon-list-alt"></span><span
-                    class="nav-label">
-                    Mi Perfil</span></a>
-                <a class="dropdown-item" href="#" [routerLink]="['/Admin/Sesion']"><span class="glyphicon glyphicon-envelope"></span><span
-                    class="nav-label">Consultar
-                    Usuario</span></a>
-                <a class="dropdown-item" href="#" [routerLink]="['/Admin/Añadir_Usuario']"><span class="glyphicon glyphicon-cog"></span><span
-                    class="nav-label">Agregar
-                    Usuario</span></a>
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-film"></span><span class="nav-label">Reportes</span></a>
-
-                <a class="dropdown-item" href="#" onclick="javascript:alert('Aún no se ha implementado este metodo');"><span
-                    class="glyphicon glyphicon-calendar"></span><span class="nav-label">Alarmas</span></a>
-              </div>
-            </div>
-
-          </li>
-
-        </ul>
-        <!--Item al lado izquierdo de la pantalla  -->
 
 
-        <!-- Item Al lado derecho de la pantalla-->
+
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="example-container">
+      <div class="d-flex justify-content-center">
+
+      </div>
+      <br>
+      <div class="justify-content-center card-info">
+        <h6 class="text-center">Bienvenid@</h6>
+
+      </div>
+      <br>
+      <ul class="box-list">
+
+      </ul>
+      <hr class="color-white">
+      <div class="justify-content-center exit cursor">
+
+        <a class="dropdown-item" [routerLink]="['/Admin',{outlets:{home:['Perfil']}}]"><span class="glyphicon glyphicon-list-alt"></span><span
+            class="nav-label">
+            Mi Perfil</span></a>
+
+
+        <a class="dropdown-item" href="#" [routerLink]="['/Admin',{outlets:{home:['Sesion']}}]"><span class="glyphicon glyphicon-envelope"></span><span
+            class="nav-label">Consultar
+            Usuario</span></a>
+
+        <a class="dropdown-item" href="#" [routerLink]="['/Admin',{outlets:{home:['Añadir_Usuario']}}]"><span class="glyphicon glyphicon-cog"></span><span
+            class="nav-label">Agregar
+            Usuario</span></a>
+
+        <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-film"></span><span class="nav-label">Reportes</span></a>
+
+        <a class="dropdown-item" href="#" [routerLink]="['/Admin',{outlets:{home:['Alerta']}}]"><span
+            class="glyphicon glyphicon-calendar"></span><span class="nav-label">Alarmas</span></a>
+
+
+        <a class="dropdown-item" href="#" (click)="devolverLogin()"><span
+              class="glyphicon glyphicon-calendar"></span><span class="nav-label">Cerrar Sesión</span></a>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+
+
+
+      <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand"><i class="fas fa-bars cursor" (click)="sidenav.toggle()"></i> </a>
 
         <form class="form-inline my-2 my-lg-0">
           <ul class="navbar-nav ml-auto">
@@ -72,34 +77,36 @@
 					      </li>
 						-->
             <li class="nav-item">
-              <div class="dropdown">
-                <i class="fas fa-user-circle " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false"></i>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Cerrar Sesión</a>
-                 
-                </div>
-              </div>
+                 {{user.email}}
+                <i class="fas fa-user-circle"> </i>
 
             </li>
 
 
             <li class="nav-item active">
               <!--  -->
-             </li>
+            </li>
 
             <li class="nav-item active">
-             <!--  -->
+              <!--  -->
             </li>
 
           </ul>
         </form>
+      </nav>
+
+      <div class="contenedor">
+        <router-outlet name="home"> </router-outlet>
       </div>
-    </div>
-  </nav>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
 
-  <router-outlet> </router-outlet>
+
+
+
+
+
 
 
 

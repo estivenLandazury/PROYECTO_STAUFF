@@ -5,7 +5,5 @@ export class Usuario {
 	nombre: string;
 	apellido: string;
 	numeroDocumento: string;
-    fechaNacimiento: Date;
-    encargado: Encargado[]
-            
+	fechaNacimiento: Date;
 }
