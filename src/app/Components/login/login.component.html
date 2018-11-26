@@ -22,6 +22,9 @@
 </head>
 
 <body>
+
+
+    
   <form>
     <div class="container">
       <div class="row">
@@ -31,13 +34,14 @@
               <h5 class="card-title text-center">Sign In</h5>
               <form (ngSubmit)="verificarSesionUsuario()" class="form-signin">
                 <div class="form-label-group">
-                  <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email address" required
-                    autofocus [(ngModel)]="username">
-                  <label for="inputEmail">Email address</label>
+                  <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Name User"
+                    required autofocus [(ngModel)]="username">
+                  <label for="inputEmail">User Name</label>
                 </div>
 
                 <div class="form-label-group">
-                  <input type="password" name="password1" id="inputPassword" class="form-control" placeholder="Password" required [(ngModel)]="password1">
+                  <input type="password" name="password1" id="inputPassword" class="form-control" placeholder="Password"
+                    required [(ngModel)]="password1">
                   <label for="inputPassword">Password</label>
                 </div>
 
@@ -47,7 +51,10 @@
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
 
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Register</button>
+                <!-- <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Register</button> -->
+
+
+
 
 
               </form>

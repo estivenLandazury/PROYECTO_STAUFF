@@ -77,8 +77,8 @@
 					      </li>
 						-->
             <li class="nav-item">
-                 {{user.email}}
-                <i class="fas fa-user-circle"> </i>
+                
+             <p> {{user.email}} <i class="fas fa-user-circle"> </i> </p>
 
             </li>
 
@@ -96,9 +96,13 @@
       </nav>
 
       <div class="contenedor">
-        <router-outlet name="home"> </router-outlet>
+      <router-outlet name="home"> </router-outlet>
+
       </div>
+
+
     </mat-sidenav-content>
+
   </mat-sidenav-container>
 
 

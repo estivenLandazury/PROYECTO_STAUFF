@@ -27,32 +27,7 @@
 
 
   <div class="container">
-    <!--   Formulario Registro usuario-->
-    <!--   
-      <div>
-        <p id="Añdir" class="font-weight-bold">Añadir Usuarios.</p>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Nombre</label>
-          <input type="text" name="nombre" class="form-control" id="inputEmail4" placeholder="Inserte su nombre"
-            [(ngModel)]="nombre">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Identificación</label>
-          <input type="number" name="identificador" class="form-control" id="inputPassword4" placeholder="Inserte su ID"
-            [(ngModel)]="identificador">
-        </div>
-      </div>
-      <div class="form-group ">
-        <label for="inputAddress">Apellido</label>
-        <input type="text" name="apellido" class="form-control" id="inputAddress" placeholder="Inserte su apellido"
-          [(ngModel)]="apellido">
-      </div>
-      <button  type="submit" class="btn btn-primary">Guardar</button>
 
-     
-           -->
 
     <div>
       <p id="perfil" class="text-center"> <strong>Añadir Usuario</strong></p>
@@ -61,88 +36,108 @@
     <div class="panel panel-default">
 
 
-      <form (ngSubmit)="addUser()">
-        <div class="form-group row">
-          <label for="example" class="col-2 col-form-label">Nombre</label>
-          <div class="col-10">
-            <input class="form-control" name="nombre" type="text" value="" placeholder="Ingrese su nombre" d="example"
-              [(ngModel)]="nombre">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="texto" class="col-2 col-form-label">Apellido</label>
-          <div class="col-10">
-            <input class="form-control" type="text" name="apellido" value="" placeholder="Ingrese su apellido" id="texto-1"
-              [(ngModel)]="apellido">
-          </div>
-        </div>
-
-
-        <div class="form-group row">
-          <label for="example-url-input" class="col-2 col-form-label">Tipo Documento</label>
-          <div class="col-10">
-            <select name="tipoDocumento1" [(ngModel)]="tipoDocumento1" class="form-control">
-              <option *ngFor="let tpd of tipoDocumentos" value="{{tpd.idTipoDocumento}}">{{tpd.nombreDocumento}}</option>
-
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="example-url-input" class="col-2 col-form-label">Número Documento</label>
-          <div class="col-10">
-            <input class="form-control" type="url" name="numeroDocumento" value="" placeholder="Ingrese su número de documento"
-              id="example-url-input" [(ngModel)]="numeroDocumento">
-          </div>
-        </div>
-
-
-
-        <div class="form-group row">
-          <label for="cuenta" class="col-2 col-form-label">Correo</label>
-          <div class="col-10">
-            <input type="email" class="form-control" name="correo" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Ingrese su correo" [(ngModel)]="correo">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="example-password-input" class="col-2 col-form-label">Clave</label>
-          <div class="col-10">
-            <input class="form-control" type="password" name="contrasena" value="" id="example-password-input"
-              placeholder="Ingrese la clave" [(ngModel)]="contrasena">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="tipoUsu" class="col-2 col-form-label">Tipo Usuario</label>
-          <div class="col-10">
-            <select name="tipoUsuario1" [(ngModel)]="tipoUsuario1" class="form-control" id="tipoUsu">
-              <option *ngFor="let tip of tipoUsuarios" value="{{tip.idTipo}}">{{tip.nombreRol}}</option>
-
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="example-date-input" class="col-2 col-form-label">Fecha nacimiento</label>
-          <div class="col-10">
-            <input class="form-control" type="date" name="fechaNacimiento" value="" id="1" placeholder="ingresa la fecha de nacimiento"
-              [(ngModel)]="fechaNacimiento">
-          </div>
-        </div>
-
-        <div>
-
-
-          <button type="submit" id="añadirUsuario" class="btn btn-success">Añadir Usuario</button>
-        </div>
-      </form>
 
       <!-- form-->
 
       <!---  Formulario Registro del encargado -->
+
+
+      <!--  Acordion registro usuario-->
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="true"
+                aria-controls="collapseOne">
+               Añadir Usuarios
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <form (ngSubmit)="addUser()">
+                <div class="form-group row">
+                  <label for="example" class="col-2 col-form-label">Nombre</label>
+                  <div class="col-10">
+                    <input class="form-control" name="nombre" type="text" value="" placeholder="Ingrese su nombre" d="example"
+                      [(ngModel)]="nombre">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="texto" class="col-2 col-form-label">Apellido</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" name="apellido" value="" placeholder="Ingrese su apellido"
+                      id="texto-1" [(ngModel)]="apellido">
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Tipo Documento</label>
+                  <div class="col-10">
+                    <select name="tipoDocumento1" [(ngModel)]="tipoDocumento1" class="form-control">
+                      <option *ngFor="let tpd of tipoDocumentos" value="{{tpd.idTipoDocumento}}">{{tpd.nombreDocumento}}</option>
+
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Número Documento</label>
+                  <div class="col-10">
+                    <input class="form-control" type="url" name="numeroDocumento" value="" placeholder="Ingrese su número de documento"
+                      id="example-url-input" [(ngModel)]="numeroDocumento">
+                  </div>
+                </div>
+
+
+
+
+
+              
+
+                <div class="form-group row">
+                  <label for="tipoUsu" class="col-2 col-form-label">Tipo Usuario</label>
+                  <div class="col-10">
+                    <select name="tipoUsuario1" [(ngModel)]="tipoUsuario1"  class="form-control" id="tipoUsu">
+                      <option *ngFor="let tip of tipoUsuarios"  value="{{tip.idTipo}}">{{tip.nombreRol}}</option>
+
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="example-date-input" class="col-2 col-form-label">Fecha nacimiento</label>
+                  <div class="col-10">
+                    <input class="form-control" type="date" name="fechaNacimiento" value="" id="1" placeholder="ingresa la fecha de nacimiento"
+                      [(ngModel)]="fechaNacimiento">
+                  </div>
+                </div>
+
+                <div>
+
+
+                  <button type="submit" id="añadirUsuario" class="btn btn-success">Añadir Usuario</button>
+                </div>
+              </form>
+
+
+            </div>
+
+           
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--  Acordion registro usuario-->
+
 
       <!-- Acordion1-->
       <div id="accordion">
@@ -226,19 +221,21 @@
                 <div class="form-group row">
                   <label for="texto" class="col-2 col-form-label">Mac-Id</label>
                   <div class="col-10">
-                    <input class="form-control" type="text" value=""  name="macid" placeholder="Ingrese la mac del dispositivo" id="texto-2" [(ngModel)]="macid">
+                    <input class="form-control" type="text" value="" name="macid" placeholder="Ingrese la mac del dispositivo"
+                      id="texto-2" [(ngModel)]="macid">
                   </div>
                 </div>
                 <!-- Nombre del dispositivo-->
                 <div class="form-group row">
                   <label for="texto" class="col-2 col-form-label">Nombre del dispositivo</label>
                   <div class="col-10">
-                    <input class="form-control" type="text" value="" name="nombreDispositivo" placeholder="Ingrese el nombre del dispositivo" id="texto-3" [(ngModel)]="nombreDispositivo">
+                    <input class="form-control" type="text" value="" name="nombreDispositivo" placeholder="Ingrese el nombre del dispositivo"
+                      id="texto-3" [(ngModel)]="nombreDispositivo">
                   </div>
                 </div>
 
                 <div id="accionManilla" mx-4>
-                  <button type="submit"  click="addDispositivo()" class="btn btn-success">Guardar</button>
+                  <button type="submit" click="addDispositivo()" class="btn btn-success">Guardar</button>
                   <button type="button" class="btn btn-danger">Cancelar</button>
                 </div>
 
@@ -300,6 +297,7 @@
       </form>
 
     </div>
+
 
 
 

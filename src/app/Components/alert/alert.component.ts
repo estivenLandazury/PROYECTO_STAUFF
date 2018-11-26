@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnChanges,SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ServiciosService } from '../../dataServices/servicios.service';
-import {Alarma} from '../../models/alarma';
+import { Alarma } from '../../models/alarma';
 import { Observable } from 'rxjs';
 import { Howl } from 'howler'
 
@@ -10,65 +10,107 @@ import { Howl } from 'howler'
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent implements OnInit, OnChanges {
-  
-  
-  
 
-  @Input() estadoAlarma: Alarma[];
-  
-  constructor(private ServiciosService: ServiciosService) { 
+  valorDefaul: Number;
+  private interval: any;
+  alarma: Alarma;
+  value: number
+  val = 0;
+  evaluado:boolean
+  valAnterior: Array<number> = new Array();
+  estadoAlarma: Alarma[]
+
+
+
+
+  constructor(private ServiciosService: ServiciosService) {
 
 
   }
+
+  cargarIntervalo() {
+    this.interval = setInterval(() => {
+      this.ServiciosService.getAlarmas().subscribe(
+        x => {
+          this.value = x.length
+          this.propagaciónAlarma(this.value)
+          console.log(x.length + " " + this.value)
+        },
+        e => alert("Erro al registrar usuario"),
+        () => console.log("ddf")
+
+
+      )
+    }, 30000);
+  }
+
+
 
   ngOnInit() {
-
-   
-    /*
-  this.ServiciosService.getAlarmas().subscribe((result =>
-    {
-      this.valorEstado=result.length;
-      
-     or(let i= result.length-1; i>=0; i--){
-      console.log(result[1].descripcion+"   información de manillas")
- 
-     }
-     
-    })) */
-  
-    this.ServiciosService.getAlarmas().subscribe((data=>this.estadoAlarma=data));
-    var sound = new Howl({
-     src: ['../../../assets/BOMB_SIREN-BOMB_SIREN-247265934.wav'],
-     html5: true
-   });
-   sound.play();
-   
-
+    this.cargarIntervalo()
   }
 
+
+  propagaciónAlarma(valorLista: number) {
+    this.val = valorLista;
+    
+    console.log("evaluado antes del if "+ this.evaluado)
+    if (!this.valAnterior.includes(this.val)) {
+     this.evaluado=false
+      console.log("evaluado  dentro if "+ this.evaluado)
+
+      this.valAnterior.push(this.val)
+    }
+
+    
+    if (this.valAnterior.length > 1 && !this.evaluado) {
+      console.log(this.valAnterior.length+" >1 && evaluado= " +this.evaluado)
+      let position = this.valAnterior.length-2;
+
+      let compare = this.valAnterior[position]
+      console.log("compare "+compare +"&& val= "+ this.val)
+      this.evaluado=true
+
+
+      if (compare < this.val) {
+        console.log("evaluado siendo evaluado "+ this.evaluado)
+
+        var sound = new Howl({
+          src: ['../../../assets/BOMB_SIREN-BOMB_SIREN-247265934.wav'],
+          html5: true
+        });
+        sound.play();
+
+
+      }
+
+
+    } 
+
+
+  }
 
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    for( let propName in changes){
-      let change= changes[propName]
+    for (let propName in changes) {
+      let change = changes[propName]
       let curval = JSON.stringify(change.currentValue);
-      let preVal= JSON.stringify(change.previousValue);
+      let preVal = JSON.stringify(change.previousValue);
 
-      console.log(curval)
+      console.log("lansasldkdk")
       console.log(preVal);
     }
-    this.ServiciosService.getAlarmas().subscribe((data=>this.estadoAlarma=data));
-    var sound = new Howl({
-     src: ['../../../assets/BOMB_SIREN-BOMB_SIREN-247265934.wav'],
-     html5: true
-   });
-   sound.play();
-   
- 
+
+
   }
 
 
- 
+
 
 }
+
+
+
+
+

@@ -21,6 +21,9 @@
 </head>
 
 <body>
+
+
+
   <form>
     <div class="container">
       <div>
@@ -32,31 +35,33 @@
         <div class="form-group row">
           <label for="example" class="col-2 col-form-label">Nombre</label>
           <div class="col-10">
-            <input class="form-control" type="text" value="" placeholder="Ingrese su nombre" d="example">
+            <input class="form-control" type="text" name="nombre" value="{{nombre}}" placeholder="Ingrese su nombre" id="example"
+              [(ngModel)]="nombre">
           </div>
         </div>
 
         <div class="form-group row">
           <label for="texto" class="col-2 col-form-label">Apellido</label>
           <div class="col-10">
-            <input class="form-control" type="text" value="" placeholder="Ingrese su apellido" id="texto">
+            <input class="form-control" type="text" name="apellido" value="{{apellido}}" placeholder="Ingrese su apellido"
+              id="texto" [(ngModel)]="apellido">
           </div>
         </div>
 
         <div class="form-group row">
           <label for="example-url-input" class="col-2 col-form-label">Número Documento</label>
           <div class="col-10">
-            <input class="form-control" type="url" value="" placeholder="Ingrese su número de documento" id="example-url-input">
+            <input class="form-control" type="url" name="numeroDocumento " value="{{numeroDocumento}}" placeholder="Ingrese su número de documento"
+              id="example-url-input" [(ngModel)]="numeroDocumento">
           </div>
         </div>
 
         <div class="form-group row">
           <label for="example-url-input" class="col-2 col-form-label">Tipo Documento</label>
           <div class="col-10">
-            <select class="form-control">
-              <option value="+47">Norge (+47)</option>
-              <option value="+46">Sverige (+46)</option>
-              <option value="+45">Danmark (+45)</option>
+            <select name="tipoDocumento1" [(ngModel)]="tipoDocumento1" class="form-control">
+              <option *ngFor="let tpd of tipoDocumentos" value="{{tpd.idTipoDocumento}}">{{tpd.nombreDocumento}}</option>
+
             </select>
           </div>
         </div>
@@ -64,7 +69,8 @@
         <div class="form-group row">
           <label for="cuenta" class="col-2 col-form-label">Correo</label>
           <div class="col-10">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+            <input type="email" class="form-control" name="correo" value="{{correo}}" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Ingrese su correo" [(ngModel)]="correo">
           </div>
         </div>
 
@@ -75,21 +81,12 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label for="tipoUsu" class="col-2 col-form-label">Tipo Usuario</label>
-          <div class="col-10">
-            <select class="form-control" id="tipoUsu">
-              <option value="+47">cc</option>
-              <option value="+46">cc</option>
-              <option value="+45">cc</option>
-            </select>
-          </div>
-        </div>
+        
 
         <div class="form-group row">
           <label for="example-date-input" class="col-2 col-form-label">Fecha nacimiento</label>
           <div class="col-10">
-            <input class="form-control" type="date" value="" id="example-date-input" placeholder="ingresa la fecha de nacimiento">
+            <input class="form-control" name="fechaNacimiento" type="date" value="21-12-2017" id="example-date-input" [(ngModel)]="correo">
           </div>
         </div>
 

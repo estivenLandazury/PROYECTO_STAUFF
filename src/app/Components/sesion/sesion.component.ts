@@ -10,6 +10,13 @@ import { ServiciosService } from '../../dataServices/servicios.service';
 export class SesionComponent implements OnInit {
 
   usuarios: Usuario[];
+  usuario:Usuario;
+
+  nombre: string;
+  apellido: string;
+  numeroDocumento: string;
+  fechaNacimiento: Date;
+  user:string
 
 
   getUsuarios(): void {
@@ -17,7 +24,7 @@ export class SesionComponent implements OnInit {
   }
 
   delete(e,usuario:Usuario): void {
-    this.ServiciosService.deleteUsuario(usuario.Identificador).subscribe();
+    this.ServiciosService.deleteUsuario(usuario.id).subscribe();
     this.usuarios = this.usuarios.filter(a => a !== usuario);
     console.log(usuario);
   }
@@ -37,8 +44,40 @@ export class SesionComponent implements OnInit {
 
   }
 
+
+  obtenerUsuario(){
+
+    this.ServiciosService.getUsuario(this.nombre, this.apellido).subscribe(result=>{
+     
+      for(let i= result.length-1; i>=0; i--){
+        let user=result[i];
+
+          console.log(user.apellido)
+          
+          alert("Nombre del usaurio: " +user.nombre+"/n"+ "Apellido: "+ user.apellido)
+   
+       }
+
+    },
+      e=>  alert("Error al buscar Usuario"),
+
+
+      )
+
+  }
+
+
+
+
   ngOnInit() {
     this.getUsuarios();
+    this.obtenerUsuario();
+
+   
+
+ 
+
   }
+
 
 }

@@ -1,5 +1,6 @@
 export class Alarma{
-    appMovil: "";
+    id:string;
+    appMovil: string;
     solucionado: boolean;
-    descripcion: "";
+    descripcion: string;
 }

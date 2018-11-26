@@ -19,7 +19,7 @@ const APP_ROUTES: Routes = [
         { path: 'Perfil', component: PerfilComponent, outlet: "home" },
         { path: 'Alerta', component: AlertComponent, outlet: "home" },]
     },
-    { path: '**', pathMatch: 'full', redirectTo: 'Login' },
+    { path: '', pathMatch: 'full', redirectTo: 'Login' },
 
 
 

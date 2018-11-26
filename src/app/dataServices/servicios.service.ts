@@ -32,6 +32,8 @@ export class ServiciosService {
   
   /*getUsuarios() {
     return this.htpp.get<Usuario[]>('http://localhost:8000/usuario?format=json');
+    http://127.0.0.1:8000/getUsu/?q=Steven&l=Land%C3%A1zury%20Salazar
+
   }*/
 
 
@@ -39,13 +41,29 @@ export class ServiciosService {
     return this.htpp.get<Usuario[]>( CONEXION+'usuarios');
   }
 
+  
+
+  
+
+
+  getUsuario(nombre:string, apellido:string):Observable<Usuario[]>{
+    return this.htpp.get<Usuario[]>(CONEXION+'getUsu/?q='+nombre+"&l="+apellido);
+  }
+
+  
+  getUsuarioCuenta(user:String):Observable<Usuario[]>{
+    return this.htpp.get<Usuario[]>(CONEXION+'prueba/?q='+user);
+  }
+
+  
+
   getTipoDocumentos(): Observable<TipoDocumento[]>{
     return this.htpp.get<TipoDocumento[]>(CONEXION+'Tipodocumentos');
   }
 
 
   getTipoUsuarios(): Observable<TipoUsuario[]>{
-    return this.htpp.get<TipoUsuario[]>(CONEXION+'tipoUsuarios');
+    return this.htpp.get<TipoUsuario[]>(CONEXION+'filterTipoUsuario');
   }
 
   getManillas(): Observable<Manilla[]>{
@@ -57,14 +75,15 @@ export class ServiciosService {
   }
 
 
+  
+
 
 
   
 
   
   deleteUsuario(id: string): Observable<Usuario>{
-    /* const url ='${"http://localhost:8000/usuario"}/$id';*/
-    return this.htpp.delete<Usuario>(CONEXION+'usuario/'+id).pipe(
+       return this.htpp.delete<Usuario>(CONEXION+'usuario/'+id).pipe(
       tap(_ => console.log(`Se elimino el usuario id=${id}`)),
     );
 
@@ -75,10 +94,10 @@ export class ServiciosService {
 }*/
 
 updateUser (user: Usuario): Observable<any> {
-  console.log("este es el servicio update"+ user.Identificador);
+  console.log("este es el servicio update"+ user.id);
 
-  return this.htpp.put(CONEXION+'usuario/'+user.Identificador, user).pipe(
-    tap(_ => console.log(`updated  id=${user.Identificador}`)),
+  return this.htpp.put(CONEXION+'usuario/'+user.id, user).pipe(
+    tap(_ => console.log(`updated  id=${user.id}`)),
   );
    
   
@@ -89,6 +108,12 @@ updateUser (user: Usuario): Observable<any> {
 establecerSesioUsuarip(user):Observable<User>{
  let url= CONEXION+'Autenticade';
 return this.htpp.post<User>(url,user,httpOptions);
+}
+
+crearCuentaUsuario(user):Observable<User>{
+  let url= CONEXION+'AddUser';
+  return this.htpp.post<User>(url,user,httpOptions);
+
 }
 
 
@@ -110,22 +135,23 @@ añadirUsuarioDocumento(UsDoc:UsuarioDocumento):Observable<UsuarioDocumento> {
 
 añadirUsuario (user: Usuario): Observable<Usuario> {
   return this.htpp.post<Usuario>(CONEXION+'usuarios', user).pipe(
-    tap(_ => console.log(`añadido el usuario  id=${user.Identificador}`)),
+    tap(_ => console.log(`añadido el usuario  id=${user.id}`)),
    
   );
   
 }
 
-actualizarUsuario(identificador:string, nomb:string, apell:string,numeroDoc:string,fechaNaci:Date){
-  let user:Usuario={
-    Identificador:identificador,
+actualizarUsuario(identificador:string, nomb:string, apell:string,numeroDoc:string,fechaNaci:Date, users:User){
+  let usuario:Usuario={
+    id:identificador,
     nombre:nomb,
     apellido:apell,
     numeroDocumento:numeroDoc,
     fechaNacimiento:fechaNaci,
+    user:users
 
   };
-  this.updateUser(user).subscribe();
+  this.updateUser(usuario).subscribe();
 
 }
 

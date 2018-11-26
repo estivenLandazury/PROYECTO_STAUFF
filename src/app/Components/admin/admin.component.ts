@@ -19,7 +19,6 @@ export class AdminComponent implements OnInit {
     this.router.navigateByUrl('/Admin/(home:Perfil)')
     this.user = JSON.parse(localStorage.getItem("usuario"));
     /*this.cargarIntervalo();*/
-  
   }
 
   cargarIntervalo() {

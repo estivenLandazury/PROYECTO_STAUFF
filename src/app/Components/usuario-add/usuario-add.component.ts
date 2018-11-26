@@ -8,6 +8,8 @@ import { RolUsuario } from '../../models/rolUsuario';
 
 import { ServiciosService } from '../../dataServices/servicios.service';
 import { UsuarioDocumento } from '../../models/usuarioDocumento';
+import {User} from '../../models/user';
+import {AlertsModule, AlertsService} from 'angular-alert-module';
 import { Howl } from 'howler'
 
 @Component({
@@ -17,7 +19,7 @@ import { Howl } from 'howler'
 })
 export class UsuarioAddComponent implements OnInit {
 
-  identificador: string;
+  
   nombre: string;
   apellido: string;
   numeroDocumento: string;
@@ -26,6 +28,11 @@ export class UsuarioAddComponent implements OnInit {
   tipoUsuario1: string;
   correo: string;
   contrasena: string;
+  users: User;
+
+  succesMessage:string
+
+  rol:RolUsuario;
 
 
   macid: string;
@@ -40,8 +47,8 @@ export class UsuarioAddComponent implements OnInit {
   tipoUsuarios: TipoUsuario[]
   usuarios: Usuario[]
   manillas: Manilla[]
+  usu:Usuario
 
-  succesMessage: string;
 
   constructor(private ServiciosService: ServiciosService) {
 
@@ -67,57 +74,102 @@ export class UsuarioAddComponent implements OnInit {
     this.ServiciosService.getManillas().subscribe((data => this.manillas = data));
   }
 
-
-
-
-
-
   addUser() {
-     
-
-
     /*** Rol Usuariio */
 
-    let user: Usuario = {
-      Identificador: this.numeroDocumento,
+    
+    let usuario: Usuario = {
+      id: "",
       nombre: this.nombre,
       apellido: this.apellido,
       numeroDocumento: this.numeroDocumento,
-      fechaNacimiento: this.fechaNacimiento
-
-
+      fechaNacimiento: this.fechaNacimiento,
+      user:this.users
     }
-    this.ServiciosService.añadirUsuario(user).subscribe();
+    this.usu=usuario;
+    this.ServiciosService.añadirUsuario(this.usu).subscribe(
+      x=> alert("Registrado Usuario"),
+      e=> alert("Verifque que los campos esten diligeniados correctamente"),
+      ()=> this.addRolUsuario()
 
-
-    let rol: RolUsuario = {
-      usuario: this.numeroDocumento,
-      tipoUsuario: this.tipoUsuario1,
-    };
-
-
-    this.ServiciosService.añadirRolUsuario(rol).subscribe();
-
-
-
-
-    let Usdoc: UsuarioDocumento = {
-      usuario: this.numeroDocumento,
-      tipoDocumento: this.tipoDocumento1
-    }
-
-
-    this.ServiciosService.añadirUsuarioDocumento(Usdoc).subscribe();
-
-
-
-
-    /*this.ServiciosService.añadirNuevoUsuario(this.identificador,this.nombre, this.apellido,this.numeroDocumento,
-      this.fechaNacimiento);*/
+    );
 
 
   }
 
+
+  resetValores(){
+  this.nombre ="";
+  this.apellido= "";
+  this.numeroDocumento= "";
+  this.fechaNacimiento= null;
+  this.tipoDocumento1="";
+  this.tipoUsuario1="";
+
+  }
+
+  addRolUsuario(){
+
+    this.ServiciosService.getUsuario(this.usu.nombre, this.usu.apellido).subscribe((result=>{
+
+    for(let i= result.length-1; i>=0; i--){
+
+      this.usu=result[i];
+      console.log("El rol usuarios del usuario es : "+this.usu.id)
+      let rol: RolUsuario = {
+        usuario: this.usu.id,
+        tipoUsuario: this.tipoUsuario1,
+      };
+      console.log("el id del usuario a agrega es"+rol.usuario+"  el tipo usuario es :"+ rol.tipoUsuario)
+  
+  
+      this.ServiciosService.añadirRolUsuario(rol).subscribe();
+      let usd:UsuarioDocumento={
+        usuario: this.usu.id,
+        tipoDocumento:this.tipoDocumento1
+
+      }
+      this.ServiciosService.añadirUsuarioDocumento(usd).subscribe()
+
+
+    }
+    }))
+    
+  
+    
+
+    this.resetValores()
+     
+
+
+   
+
+  }
+
+
+  addUsuarioDocumento(){
+    let Usdoc: UsuarioDocumento = {
+      usuario: this.usu.id,
+      tipoDocumento: this.tipoDocumento1
+    }
+    this.ServiciosService.añadirUsuarioDocumento(Usdoc).subscribe();
+
+
+  }
+
+
+
+/*
+this.ServiciosService.getAlarmas().subscribe((result =>
+  {
+    this.valorEstado=result.length;
+    
+   or(let i= result.length-1; i>=0; i--){
+    console.log(result[1].descripcion+"   información de manillas")
+
+   }
+   
+  })) */
 
   addDispositivo() {
 
@@ -132,10 +184,13 @@ export class UsuarioAddComponent implements OnInit {
     this.ServiciosService.añadirDispositivo(dispo).subscribe();
   }
 
+ 
+
 
   ngOnInit() {
-  
 
+    
+  
     this.getTipoDocumentos()
     this.getTipoUsuarios()
     this.getUsuarios()
