@@ -1,3 +1,4 @@
+import {Encargado} from './encargado'
 export class User{
     username:string;
     password:string;
@@ -6,5 +7,6 @@ export class User{
     firstName: string;
     lastName: string;
     email: string;
+    id:string;
     
 }

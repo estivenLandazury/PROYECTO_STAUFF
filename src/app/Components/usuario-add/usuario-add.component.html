@@ -49,14 +49,16 @@
             <h5 class="mb-0">
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="true"
                 aria-controls="collapseOne">
-               Añadir Usuarios
+                Añadir Usuarios
               </button>
             </h5>
           </div>
 
           <div id="collapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-              <form (ngSubmit)="addUser()">
+
+              <form>
+
                 <div class="form-group row">
                   <label for="example" class="col-2 col-form-label">Nombre</label>
                   <div class="col-10">
@@ -96,37 +98,30 @@
 
 
 
-              
+
 
                 <div class="form-group row">
                   <label for="tipoUsu" class="col-2 col-form-label">Tipo Usuario</label>
                   <div class="col-10">
-                    <select name="tipoUsuario1" [(ngModel)]="tipoUsuario1"  class="form-control" id="tipoUsu">
-                      <option *ngFor="let tip of tipoUsuarios"  value="{{tip.idTipo}}">{{tip.nombreRol}}</option>
+                    <select name="tipoUsuario1" [(ngModel)]="tipoUsuario1" class="form-control" id="tipoUsu">
+                      <option *ngFor="let tip of tipoUsuarios" value="{{tip.idTipo}}">{{tip.nombreRol}}</option>
 
                     </select>
                   </div>
                 </div>
 
-                <div class="form-group row">
-                  <label for="example-date-input" class="col-2 col-form-label">Fecha nacimiento</label>
-                  <div class="col-10">
-                    <input class="form-control" type="date" name="fechaNacimiento" value="" id="1" placeholder="ingresa la fecha de nacimiento"
-                      [(ngModel)]="fechaNacimiento">
-                  </div>
-                </div>
+               
 
                 <div>
 
-
-                  <button type="submit" id="añadirUsuario" class="btn btn-success">Añadir Usuario</button>
+                  <button type="submit" id="añadirUsuario" class="btn btn-success" (click)="addUser()">Añadir Usuario</button>
                 </div>
               </form>
 
 
             </div>
 
-           
+
 
 
 
@@ -140,11 +135,12 @@
 
 
       <!-- Acordion1-->
+
       <div id="accordion">
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
                 aria-controls="collapseOne">
                 Asociar Usuarios
               </button>
@@ -153,42 +149,40 @@
 
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
+              <form>
 
-              <div class="form-group row">
-                <label for="example-url-input" class="col-2 col-form-label">Encargado</label>
-                <div class="col-10">
-                  <select class="form-control">
-                    <option *ngFor="let users of usuarios" value="+47">{{users.nombre}} {{users.apellido}}
-                      {{users.Identificador}}</option>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Encargado</label>
+                  <div class="col-10">
+                    <select class="form-control" name="usuarioEncargadoDe" [(ngModel)]="usuarioEncargadoDe">
+                      <option *ngFor="let users of usuarios" value="{{users.id}}">{{users.nombre}}
+                        {{users.apellido}}
+                        {{users.Identificador}}</option>
 
-                  </select>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group row">
-                <label for="example-url-input" class="col-2 col-form-label">Encargado de</label>
-                <div class="col-10">
-                  <select class="form-control">
-                    <option *ngFor="let users of usuarios" value="+47">{{users.nombre}} {{users.apellido}}
-                      {{users.Identificador}}</option>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-2 col-form-label">Encargado de</label>
+                  <div class="col-10">
+                    <select class="form-control" name="usuarioEncargadoPor" [(ngModel)]="usuarioEncargadoPor">
+                      <option *ngFor="let users of usuarios" value="{{users.id}}">{{users.nombre}}
+                        {{users.apellido}}
+                        {{users.Identificador}}</option>
 
-                  </select>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
 
-              <div class="form-group row">
-                <label for="example-date-input" class="col-2 col-form-label">Fecha Registro</label>
-                <div class="col-10">
-                  <input class="form-control" type="date" value="" id="2" placeholder="">
-                </div>
-              </div>
+
+              </form>
 
             </div>
 
             <div id="accionPerfil" mx-4>
-              <button type="button" class="btn btn-success">Guardar</button>
-              <button type="button" class="btn btn-danger">Cancelar</button>
+              <button type="button" class="btn btn-success" (click)="asociarUsuarios()">Guardar</button>
             </div>
 
 
@@ -199,9 +193,10 @@
 
       </div>
 
+
       <!-- Acoordion número 2-->
 
-      <form (ngSubmit)="addDispositivo()">
+      
         <div id="accordion">
 
           <div class="card">
@@ -215,6 +210,7 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body">
+                <form>
 
                 <!--  ingresar la manilla a la base de datos-->
                 <!-- Mac-Id de la manilla-->
@@ -235,9 +231,9 @@
                 </div>
 
                 <div id="accionManilla" mx-4>
-                  <button type="submit" click="addDispositivo()" class="btn btn-success">Guardar</button>
-                  <button type="button" class="btn btn-danger">Cancelar</button>
+                  <button type="submit" (click)="addDispositivo()" class="btn btn-success">Guardar</button>
                 </div>
+              </form>
 
 
               </div>
@@ -254,47 +250,42 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body">
+                <form>
+                  <div class="form-group row">
+                    <label for="example-url-input" class="col-2 col-form-label">Usuario</label>
+                    <div class="col-10">
+                      <select class="form-control" name="usuarioManilla" [(ngModel)]="usuarioManilla">
+                        <option *ngFor="let users of usuarios" value="{{users.id}}">{{users.nombre}} {{users.apellido}}
+                          {{users.Identificador}}</option>
 
-
-                <div class="form-group row">
-                  <label for="example-url-input" class="col-2 col-form-label">Usuario</label>
-                  <div class="col-10">
-                    <select class="form-control">
-                      <option *ngFor="let users of usuarios" value="+47">{{users.nombre}} {{users.apellido}}
-                        {{users.Identificador}}</option>
-
-                    </select>
+                      </select>
+                    </div>
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="example-url-input" class="col-2 col-form-label">Dispositivo</label>
-                  <div class="col-10">
-                    <select class="form-control">
-                      <option *ngFor="let manillas of manillas" value="+47">{{manillas.macId}} {{manillas.nombre}}</option>
+                  <div class="form-group row">
+                    <label for="example-url-input" class="col-2 col-form-label">Dispositivo</label>
+                    <div class="col-10">
+                      <select class="form-control" name="manillaId" [(ngModel)]="manillaId">
+                        <option *ngFor="let manillas of manillas" value="{{manillas.macId}}">{{manillas.macId}} {{manillas.nombre}}</option>
 
-                    </select>
+                      </select>
+                    </div>
                   </div>
-                </div>
 
 
-                <div class="form-group row">
-                  <label for="example-date-input" class="col-2 col-form-label">Fecha Registro</label>
-                  <div class="col-10">
-                    <input class="form-control" type="date" value="" id="3" placeholder="">
+
+
+                  <div id="asociarManilla" mx-4>
+                    <button type="button" class="btn btn-success" (click)="asociarDispositivo()">Guardar</button>
                   </div>
-                </div>
+                </form>
 
-                <div id="asociarManilla" mx-4>
-                  <button type="button" class="btn btn-success">Guardar</button>
-                  <button type="button" class="btn btn-danger">Cancelar</button>
-                </div>
 
               </div>
             </div>
           </div>
         </div>
-      </form>
+    
 
     </div>
 

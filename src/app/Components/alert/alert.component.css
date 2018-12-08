@@ -13,6 +13,9 @@ i.fa.fa-comments.fa-5x {
     background: #2e6197;
 }
 
+.col-lg-4.ng-star-inserted {
+  margin-top: 2%;
+}
 
 .panel-green {
     border-color: #5cb85c;
@@ -69,3 +72,9 @@ i.fa.fa-comments.fa-5x {
   .panel-yellow > a:hover {
     color: #df8a13;
   }
+
+
+  a.btn.btn-primary {
+    width: 44%;
+    margin-right: 2%;
+}

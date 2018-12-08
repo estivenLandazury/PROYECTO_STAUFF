@@ -9,7 +9,7 @@ import { Howl } from 'howler'
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.css']
 })
-export class AlertComponent implements OnInit, OnChanges {
+export class AlertComponent implements OnInit {
 
   valorDefaul: Number;
   private interval: any;
@@ -18,7 +18,16 @@ export class AlertComponent implements OnInit, OnChanges {
   val = 0;
   evaluado:boolean
   valAnterior: Array<number> = new Array();
-  estadoAlarma: Alarma[]
+  alarmas: Alarma[]
+  alrmasResultas:Alarma[]
+  alrmasNoResultas:Alarma[]
+
+
+  totalAlarmasResueltas: number;
+  totalAlarmasSinResolver: number;
+  todasLasAlarmas:number;
+  AlrmasActuales:number;
+
 
 
 
@@ -28,82 +37,57 @@ export class AlertComponent implements OnInit, OnChanges {
 
   }
 
-  cargarIntervalo() {
-    this.interval = setInterval(() => {
-      this.ServiciosService.getAlarmas().subscribe(
-        x => {
-          this.value = x.length
-          this.propagaciónAlarma(this.value)
-          console.log(x.length + " " + this.value)
-        },
-        e => alert("Erro al registrar usuario"),
-        () => console.log("ddf")
-
-
-      )
-    }, 30000);
-  }
+  
 
 
 
   ngOnInit() {
-    this.cargarIntervalo()
+   /* this.cargarIntervalo()*/
+   this.obtenerALarmas()
+   this.obtenerAlarmasResueltas()
+   this.obtenerAlrmasSinTerminar()
   }
 
 
-  propagaciónAlarma(valorLista: number) {
-    this.val = valorLista;
+obtenerALarmas(){
+  this.ServiciosService.getAlarmas().subscribe(result=>{
+
+    this.alarmas=result;
+    this.todasLasAlarmas=this.alarmas.length
+
+
+  })
+
+}
+
+
+obtenerAlarmasResueltas(){
+  this.ServiciosService.getAlarmasResueltas().subscribe(result=>{
     
-    console.log("evaluado antes del if "+ this.evaluado)
-    if (!this.valAnterior.includes(this.val)) {
-     this.evaluado=false
-      console.log("evaluado  dentro if "+ this.evaluado)
-
-      this.valAnterior.push(this.val)
-    }
-
-    
-    if (this.valAnterior.length > 1 && !this.evaluado) {
-      console.log(this.valAnterior.length+" >1 && evaluado= " +this.evaluado)
-      let position = this.valAnterior.length-2;
-
-      let compare = this.valAnterior[position]
-      console.log("compare "+compare +"&& val= "+ this.val)
-      this.evaluado=true
+    this.alrmasResultas=result;
+    this.totalAlarmasResueltas=this.alrmasResultas.length
 
 
-      if (compare < this.val) {
-        console.log("evaluado siendo evaluado "+ this.evaluado)
+    this.alarmas=this.alrmasResultas
+  })
 
-        var sound = new Howl({
-          src: ['../../../assets/BOMB_SIREN-BOMB_SIREN-247265934.wav'],
-          html5: true
-        });
-        sound.play();
+}
 
 
-      }
+obtenerAlrmasSinTerminar(){
+  this.ServiciosService.getAlarmasSinTerminar().subscribe(result=>{
+    this.totalAlarmasSinResolver=result.length
+    this.alrmasNoResultas=result;
+    this.alarmas=this.alrmasNoResultas
+  
+
+  })
+}
 
 
-    } 
 
 
-  }
 
-
-  ngOnChanges(changes: SimpleChanges): void {
-
-    for (let propName in changes) {
-      let change = changes[propName]
-      let curval = JSON.stringify(change.currentValue);
-      let preVal = JSON.stringify(change.previousValue);
-
-      console.log("lansasldkdk")
-      console.log(preVal);
-    }
-
-
-  }
 
 
 

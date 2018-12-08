@@ -23,7 +23,7 @@
 
 <body>
 
-    
+
 
   <div class="row">
     <div class="col-lg-3 col-md-6">
@@ -34,18 +34,18 @@
               <i class="fa fa-comments fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge">26</div>
-              <div>Comentarios!</div>
+              <div class="huge">{{totalAlarmasResueltas}}</div>
+              <div>AlrmasResueltas!</div>
             </div>
           </div>
         </div>
-        <a href="#">
+        <button class="btn btn" (click)="obtenerAlarmasResueltas()">
           <div class="panel-footer">
             <span class="pull-left">Ver detalles</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </a>
+        </button>
       </div>
     </div>
     <div class="col-lg-3 col-md-6">
@@ -56,18 +56,18 @@
               <i class="fa fa-tasks fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge">12</div>
-              <div>Tareas!</div>
+              <div class="huge">{{todasLasAlarmas}}</div>
+              <div>Todas Las alarmas!</div>
             </div>
           </div>
         </div>
-        <a href="#">
+        <button class="btn btn" (click)="obtenerALarmas()">
           <div class="panel-footer">
             <span class="pull-left">Ver detalles</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </a>
+        </button>
       </div>
     </div>
     <div class="col-lg-3 col-md-6">
@@ -78,20 +78,22 @@
               <i class="fa fa-shopping-cart fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge">124</div>
-              <div>Negocios!</div>
+              <div class="huge">{{totalAlarmasSinResolver}}</div>
+              <div>Alrmas sin Resolver</div>
             </div>
           </div>
         </div>
-        <a href="#">
+        <button class="btn btn" (click)="obtenerAlrmasSinTerminar()">
           <div class="panel-footer">
             <span class="pull-left">Ver detalles</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </a>
+        </button>
       </div>
     </div>
+
+    <!-- 
     <div class="col-lg-3 col-md-6">
       <div class="panel panel-red">
         <div class="panel-heading">
@@ -114,6 +116,7 @@
         </a>
       </div>
     </div>
+    -->
   </div>
 
 
@@ -121,7 +124,56 @@
 
 
 
+  <div class="row card-group my-2">
+    <div *ngFor="let alarma of alarmas" class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1505619096787-7287f0a3a1ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f697372f8362cab950e2e9647c86686&auto=format&fit=crop&w=750&q=80"
+          alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Alarma <br>
+            Registro:-{{alarma.fechaRegistro}}</h5>
+          <p class="card-text">
+            <strong> Atendida:</strong>{{alarma.solucionado}}<br>
+            <strong> Descripción:</strong> {{alarma.descripcion}}
 
-  </body>
 
-  </html>
+            .</p>
+          <div id="botones">
+            <a href="#" class="btn btn-primary">Editar</a>
+            <a href="#" class="btn btn-primary">Información</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</body>
+
+</html>

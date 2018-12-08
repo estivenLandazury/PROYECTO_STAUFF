@@ -2,7 +2,7 @@ import {RolUsuario} from './rolUsuario'
 
 export class TipoUsuario{
     idTipo: string;
-    nombreRol: String;
+    nombreRol: string;
     rolUsuario: RolUsuario[]
  
 }

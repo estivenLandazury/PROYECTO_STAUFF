@@ -2,7 +2,7 @@ import {UsuarioDocumento} from './usuarioDocumento'
 
 export class TipoDocumento{
 
-    idTipoDocumento:String
-    nombreDocumento:String
+    idTipoDocumento:string
+    nombreDocumento:string
     usuario_Documento:UsuarioDocumento[]
 }

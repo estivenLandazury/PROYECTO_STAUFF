@@ -17,7 +17,7 @@ export class UpdateUsersComponent implements OnInit {
   apellido:string;
   numeroDocumento:string;
   fechaNacimiento:Date
-  encargado:Encargado[]
+  encargado:string[]
   user:User
  
   constructor(private ServiciosService: ServiciosService) { 
@@ -27,7 +27,7 @@ export class UpdateUsersComponent implements OnInit {
 
   updateUser(){
     this.ServiciosService.actualizarUsuario(this.identificador,this.nombre, this.apellido,this.numeroDocumento,
-      this.fechaNacimiento,this.user);
+    this.user, this.encargado);
 
   }
 

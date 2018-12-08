@@ -3,6 +3,7 @@ import { User } from '../../models/user';
 import {Usuario} from '../../models/usuario';
 import { ServiciosService } from '../../dataServices/servicios.service';
 import { TipoDocumento } from '../../models/tipoDocumento';
+import {Encargado} from '../../models/encargado';
 
 
 
@@ -22,6 +23,7 @@ export class PerfilComponent implements OnInit {
   apellido:string;
   correo:string;
   fechaNacimiento:Date;
+  encargado: string[]
 
   encontrado:boolean
 
@@ -49,11 +51,9 @@ export class PerfilComponent implements OnInit {
 
   obtenerusuario(){
      
-    console.log(
-    this.ServiciosService.getUsuarioCuenta("1").subscribe((result=>{
+    this.ServiciosService.getUsuarioCuenta(this.user.user_id).subscribe((result=>{
       
       for(let i= result.length-1; i>=0; i--){
-       console.log( result[i]);
        
     this.usuario=result[i];
         
@@ -62,8 +62,8 @@ export class PerfilComponent implements OnInit {
         nombre: this.usuario.nombre,
         apellido: this.usuario.apellido,
         numeroDocumento: this.usuario.numeroDocumento,
-        fechaNacimiento: this.usuario.fechaNacimiento,
         user: this.usuario.user,
+        encargado: this.encargado,
 
 
         }
@@ -72,14 +72,12 @@ export class PerfilComponent implements OnInit {
         this.nombre=usu.nombre;
         this.apellido=usu.apellido;
         this.correo=this.user.email;
-        this.fechaNacimiento=usu.fechaNacimiento;
 
-        console.log("El perfil del usuario es "+ usu.nombre+ " "+ usu.user)
 
 
       }
     }))
-    )
+    
   }
 
 

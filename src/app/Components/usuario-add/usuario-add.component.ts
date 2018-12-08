@@ -11,6 +11,7 @@ import { UsuarioDocumento } from '../../models/usuarioDocumento';
 import {User} from '../../models/user';
 import {AlertsModule, AlertsService} from 'angular-alert-module';
 import { Howl } from 'howler'
+import { ManillaUsuario } from '../../models/manillaUsuario';
 
 @Component({
   selector: 'app-usuario-add',
@@ -33,12 +34,19 @@ export class UsuarioAddComponent implements OnInit {
   succesMessage:string
 
   rol:RolUsuario;
+  today:number= Date.now();
 
+
+  usuarioEncargadoDe:string
+  usuarioEncargadoPor:string
 
   macid: string;
   nombreDispositivo: string;
 
-
+  /**asociar manilla */
+  usuarioManilla:string
+  manillaId:string
+/**---------------------- */
 
   /*Listas */
 
@@ -83,12 +91,13 @@ export class UsuarioAddComponent implements OnInit {
       nombre: this.nombre,
       apellido: this.apellido,
       numeroDocumento: this.numeroDocumento,
-      fechaNacimiento: this.fechaNacimiento,
-      user:this.users
+      user:this.users,
+      encargado:null
+      
     }
     this.usu=usuario;
     this.ServiciosService.añadirUsuario(this.usu).subscribe(
-      x=> alert("Registrado Usuario"),
+      x=> {alert("se registro el usuario correctamente")},
       e=> alert("Verifque que los campos esten diligeniados correctamente"),
       ()=> this.addRolUsuario()
 
@@ -110,9 +119,9 @@ export class UsuarioAddComponent implements OnInit {
 
   addRolUsuario(){
 
-    this.ServiciosService.getUsuario(this.usu.nombre, this.usu.apellido).subscribe((result=>{
+    this.ServiciosService.getUsuario(this.usu.nombre, this.usu.apellido).subscribe(result=>{
 
-    for(let i= result.length-1; i>=0; i--){
+    for(let i=0; i< result.length; i++){
 
       this.usu=result[i];
       console.log("El rol usuarios del usuario es : "+this.usu.id)
@@ -133,18 +142,22 @@ export class UsuarioAddComponent implements OnInit {
 
 
     }
-    }))
+    },
+    
+    
+    e=> {},
+    ()=>{this.resetValores()},
+    )
     
   
     
 
-    this.resetValores()
-     
+  }
 
 
    
 
-  }
+  
 
 
   addUsuarioDocumento(){
@@ -159,17 +172,7 @@ export class UsuarioAddComponent implements OnInit {
 
 
 
-/*
-this.ServiciosService.getAlarmas().subscribe((result =>
-  {
-    this.valorEstado=result.length;
-    
-   or(let i= result.length-1; i>=0; i--){
-    console.log(result[1].descripcion+"   información de manillas")
 
-   }
-   
-  })) */
 
   addDispositivo() {
 
@@ -181,16 +184,68 @@ this.ServiciosService.getAlarmas().subscribe((result =>
       nombre: this.nombreDispositivo
     }
 
-    this.ServiciosService.añadirDispositivo(dispo).subscribe();
+    this.ServiciosService.añadirDispositivo(dispo).subscribe(resul=>{
+
+    },
+    
+    e=>{alert("Error Al añadir Dispositivo")
+    this.macid="",
+    this.nombre="";},
+
+    ()=>{ 
+      alert("Has a ñadido un dispositivo correctamente")
+      this.macid="",
+      this.nombreDispositivo="";
+    }
+    );
   }
 
- 
+ asociarUsuarios(){
+
+  let encargado:Encargado={
+    id:"",
+    idEncargado: this.usuarioEncargadoDe,
+    idUsuario:this.usuarioEncargadoPor
+  }
+this.ServiciosService.añadirEncargado(encargado).subscribe(result=>{
 
 
+}, 
+
+e=>{ alert("Error al asociar los usuarios")},
+()=>{alert("Se han asociado los usuarios exitosoamente")})
+ }
+
+
+
+
+ asociarDispositivo(){
+
+
+  let manillaUsuario: ManillaUsuario={
+   id:"",
+   usuario:this.usuarioManilla,
+   manilla: this.manillaId
+  }
+
+  this.ServiciosService.añadirManillasUusario(manillaUsuario).subscribe(result=>{
+
+  
+  },
+  e=>{ alert("Error al asociar la manilla")},
+
+  ()=>{alert("Has asociado la manilla correctamente al usuario")
+
+}
+
+
+  )
+
+
+
+ }
   ngOnInit() {
 
-    
-  
     this.getTipoDocumentos()
     this.getTipoUsuarios()
     this.getUsuarios()

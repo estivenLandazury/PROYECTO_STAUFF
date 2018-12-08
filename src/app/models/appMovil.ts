@@ -1,3 +1,4 @@
 export class AppMovil{
-    nombre: "";
+    id:string;
+    nombre: string;
 }

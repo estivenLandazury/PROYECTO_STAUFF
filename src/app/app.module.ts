@@ -19,6 +19,8 @@ import { PerfilComponent } from './Components/perfil/perfil.component';
 import { AlertComponent } from './Components/alert/alert.component';
 import { AuthGuard } from './Components/auth/auth.guard';
 
+import {NgbModule,NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AuthGuard } from './Components/auth/auth.guard';
     FormsModule,
     BrowserAnimationsModule,
     MatCheckboxModule, 
-    MatSidenavModule
+    MatSidenavModule,
+    NgbModule,
+    NgbAlertModule
     
   ],
   providers: [ServiciosService, AuthGuard],

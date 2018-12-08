@@ -1,4 +1,4 @@
 export class UsuarioDocumento{
-    usuario:String
-    tipoDocumento:String
+    usuario:string
+    tipoDocumento:string
 }
