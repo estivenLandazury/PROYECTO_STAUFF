@@ -1,15 +1,22 @@
-// server.js
-//Install express server
 const express = require('express');
-const http = require('http');
-const path = require('path');
 const app = express();
-// Serve only the static files from the dist directory
+const path = require('path');
+
+const forceSSL = function() {
+  return function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(
+       ['https://', req.get('Host'), req.url].join('')
+      );
+    }
+    next();
+  }
+}
+// ForceSSL middleware
+app.use(forceSSL());
 app.use(express.static(__dirname + '/dist'));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-})
-const port = process.env.PORT || 8080;
-app.set(port);
-const server = http.createServer(app);
-server.listen(port, () => console.log('Running…'));
+app.listen(process.env.PORT || 8080);
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
