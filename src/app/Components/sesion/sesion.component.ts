@@ -4,7 +4,11 @@ import { UsuarioDocumento} from '../../models/usuarioDocumento';
 
 import { ServiciosService } from '../../dataServices/servicios.service';
 import { Encargado } from '../../models/encargado';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 @Component({
   selector: 'app-sesion',
@@ -27,10 +31,10 @@ export class SesionComponent implements OnInit {
   nombreRol:string;
   idRolUsuario:string;
   encargados: string[]
-  encargado:string
+  encargado:Usuario[];
   fechaNacimiento: Date;
   user:string;
-
+  closeResult: string;
 
   getUsuarios(): void {
     this.ServiciosService.getUsuarios().subscribe((data => this.usuarios = data));
@@ -53,17 +57,44 @@ export class SesionComponent implements OnInit {
 
 
 
-  constructor(private ServiciosService: ServiciosService, private modalService: NgbModal) {
+  constructor(private ServiciosService: ServiciosService,  private modalService: NgbModal, private toastr: ToastrService) {
+
+  }
+
+
+  error(info:string){
+    this.toastr.error('Error', info, {
+      timeOut: 3000
+    });
+
+  }
+
+
+  succes(info:string){
+    this.toastr.success('SeccesFull', info, {
+      timeOut: 3000
+    });
+
+  }
+
+  warning(info:string){
+    this.toastr.warning('Warning', info, {
+      timeOut: 3000
+    });
 
   }
 
   
   open(content) {
-    this.modalService.open(content);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    });
   }
 
+ 
 
-  obtenerUsuario(){
+
+  obtenerUsuario(content){
 
     this.ServiciosService.
     getUsuarioPorIdentificador(this.identificador).subscribe(result=>{
@@ -73,43 +104,46 @@ export class SesionComponent implements OnInit {
        
 
     },
-      e=> { alert("Error al buscar Usuario")},
+      e=> { this.error("Error al buscar Usuario")},
 
          ()=>{
            if(this.usuario===null){
-             alert("El usuario Buscado no existe")
+            this.error("El usuario Buscado no existe")
            }
 
           this.ServiciosService.getRolDUsuario(this.usuario.id).subscribe(result=>{
             this.idRolUsuario=result.tipoUsuario
          },
          
-         e=>{ alert("Error al buscar tipoRol")},
+         e=>{ this.error("Error al buscar tipoRol")},
 
          ()=>{
           this.encargados=this.usuario.encargado
-          this.obtenerEncargdaos()
           this.obtenerNumeroyTipodocumento()
+          this.obtenerEncargdaos()
 
           this.ServiciosService.getTipoUsuario(this.idRolUsuario).subscribe(result=>{
+
 
            this.nombreRol=result.nombreRol
            this.nombre=this.usuario.nombre
            this.numeroDocumento= this.usuario.numeroDocumento
            this.nombreDocumento
            this.encargados.length
-           this.encargado
-          
-            alert("El nombre del usuario es "+ this.usuario.nombre+"\n"+
-                   "El rol del usuario es "+ this.nombreRol+"\n"+
-                   "El tipo documento: "+ this.nombreDocumento+"\n"+
-                   "# Documento :" + this.usuario.numeroDocumento+"\n"+
-                   "sus encargados son: "+ this.encargados.length+"\n"+
-                   "    estos son:"+this.encargado)
-                   this.usuario.nombre="";
-                   this.nombreRol="";
+           this.encargado.length
+
+           this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+         
+          });
+
+           
+                  
 
          },
+
+         e=>{},
+
+         ()=>{ }
          
          )
         
@@ -123,23 +157,28 @@ export class SesionComponent implements OnInit {
 
 
 obtenerEncargdaos(){
+  this.encargado=[];
 
   for(let i=0; i<this.encargados.length; i++){
      
     if(this.encargados.length===0){
-      this.encargado="no tiene usuarios a su disposicón"
-    }
+    }else{
 
 
     this.ServiciosService.getUsuarioPorId(this.encargados[i]).subscribe(res=>{
-    let cadena= "   " +"nombre: "+res.nombre+ " Apellido: "+res.apellido+ " Número Documento: "+ res.numeroDocumento ;
-    this.encargado+=cadena+"\n"  
+       this.encargado=[];
+     
+      this.encargado.push(res)
   },
-
+  e=>{
+    console.log("indefinido")
+  }
+  ,
+    
   
 
     
-    )
+    )}
   }
 
   

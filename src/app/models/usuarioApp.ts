@@ -1,5 +1,6 @@
-export class Usuario {
+export class UsuarioApp {
 	id: string;
 	usuario: string;
-    appMovil: string;
+	appMovil: string;
+	fechaRegistro: string;
 }

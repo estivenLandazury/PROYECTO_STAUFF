@@ -1,6 +1,5 @@
 .container {
-    width: 71%;
-    margin-top: 1%
+    margin-top: -7%
 }
 
 p.font-weight-bold {
@@ -42,9 +41,6 @@ div#accionPerfil {
     margin-top: 2%;
 }
 
-.card {
-    width: 101%;
-    margin-left: -1%;
-    margin-top: 3%;
-}
+
+
 

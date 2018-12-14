@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+ 
+import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -16,10 +18,12 @@ import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.compon
 import { UpdateUsersComponent } from './Components/update-users/update-users.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { PerfilComponent } from './Components/perfil/perfil.component';
-import { AlertComponent } from './Components/alert/alert.component';
+import { AlertComponent} from './Components/alert/alert.component';
 import { AuthGuard } from './Components/auth/auth.guard';
-
+// import alert service and component
 import {NgbModule,NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -43,8 +47,11 @@ import {NgbModule,NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     MatCheckboxModule, 
     MatSidenavModule,
-    NgbModule,
-    NgbAlertModule
+    NgbModule.forRoot(),
+    NgbAlertModule,
+    ToastrModule.forRoot(),
+    ModalModule.forRoot(),
+    
     
   ],
   providers: [ServiciosService, AuthGuard],

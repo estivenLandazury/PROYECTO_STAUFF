@@ -22,20 +22,48 @@
 
 <body>
 
+    
+
   <div class="container">
     <div id="TitleTable">
       <p class="text-center" id="listaUsuarios"> <strong> Lista de Usuarios </strong></p>
     </div>
 
+    <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Información Detallada</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <strong>Nombre: </strong> {{nombre}} {{apellido}} <br>
+
+         <strong>Rol: </strong> {{nombreRol}} <br>
+         <strong>Tipo Documento: </strong> {{nombreDocumento}} <br>
+         <strong>Número Documento: </strong> {{numeroDocumento}} <br>
+         <strong>Tiene a cargo: </strong> {{encargados.length}} Persona/s <br>
+         <ul> 
+           <li *ngFor="let item of encargado">
+           <strong>Estos son: </strong> {{item.nombre}} {{item.apellido}} {{item.numeroDocumento}} <br>
+
+          </li>
+
+         </ul>
+         
 
 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+        </div>
+      </ng-template>
+      
+      
+      
+     
 
-
-    <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
-
-
-
-
+   
 
 
     <form class="form-inline my-2 my-lg-0">
@@ -45,7 +73,7 @@
         <input class="form-control mr-sm-2" name="identificador" type="search" placeholder="número documento"
           aria-label="Search" [(ngModel)]="identificador">
 
-        <button class="btn btn btn-primary " type="button" data-toggle="collapse" (click)="obtenerUsuario()"
+        <button class="btn btn btn-primary " type="button" data-toggle="collapse" (click)="obtenerUsuario(content)"
           aria-expanded="false" aria-controls="collapseExample">Buscar</button>
 
 
@@ -119,20 +147,7 @@
 
 
 
-  <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Hello, World!</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-    </div>
-  </ng-template>
+ 
 
 </body>
 

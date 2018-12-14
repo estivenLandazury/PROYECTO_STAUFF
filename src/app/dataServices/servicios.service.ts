@@ -5,6 +5,8 @@ import { Usuario } from '../models/usuario';
 import { TipoDocumento } from '../models/tipoDocumento';
 import { TipoUsuario } from '../models/tipoUsuario';
 import { Manilla } from '../models/manilla';
+import {UsuarioApp} from '../models/usuarioApp';
+
 
 import { UsuarioDocumento } from '../models/usuarioDocumento';
 import { User } from '../models/user';
@@ -25,7 +27,7 @@ import { ManillaUsuario } from '../models/manillaUsuario';
 })
 */
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-const CONEXION = "http://192.168.0.21:8080/";
+const CONEXION = "https://fvlalert.herokuapp.com/";
 
 @Injectable()
 export class ServiciosService {
@@ -122,6 +124,18 @@ export class ServiciosService {
   }
 
 
+  
+  getUsuarioAppPorIdAlarma(idUsuarioApp:string):Observable<UsuarioApp>{
+    return this.htpp.get<UsuarioApp>(CONEXION + 'UsuarioAppApp/'+idUsuarioApp);
+
+  }
+
+
+  getUsuarioEncargadoPrIdEncargado(idEncargado:string):Observable<Encargado>{
+
+    return this.htpp.get<Encargado>(CONEXION + 'UsuarioEncargado/'+idEncargado);
+  }
+
 
 
 
@@ -150,6 +164,10 @@ export class ServiciosService {
     );
 
 
+  }
+
+  updateAlarma(alarma:Alarma, id:string):Observable<any>{
+    return this.htpp.put<Alarma>(CONEXION +'Alarma/'+id, alarma)
   }
 
 

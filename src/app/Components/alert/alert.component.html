@@ -122,53 +122,93 @@
 
 
 
+  <div id="SCROLL">
+    <div class="row card-group my-2">
+      <div *ngFor="let alarma of alarmas" class="col-lg-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1505619096787-7287f0a3a1ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f697372f8362cab950e2e9647c86686&auto=format&fit=crop&w=750&q=80"
+            alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Alarma <br>
+              Registro:-{{alarma.fechaRegistro}}</h5>
+            <p class="card-text">
+              <strong> Atendida:</strong> {{alarma.solucionado}}<br>
+              <strong> Descripción:</strong> {{alarma.descripcion}}
 
 
-  <div class="row card-group my-2">
-    <div *ngFor="let alarma of alarmas" class="col-lg-4">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="https://images.unsplash.com/photo-1505619096787-7287f0a3a1ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f697372f8362cab950e2e9647c86686&auto=format&fit=crop&w=750&q=80"
-          alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Alarma <br>
-            Registro:-{{alarma.fechaRegistro}}</h5>
-          <p class="card-text">
-            <strong> Atendida:</strong>{{alarma.solucionado}}<br>
-            <strong> Descripción:</strong> {{alarma.descripcion}}
-
-
-            .</p>
-          <div id="botones">
-            <a href="#" class="btn btn-primary">Editar</a>
-            <a href="#" class="btn btn-primary">Información</a>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              .</p>
+            <div id="botones">
+              <a class="btn btn-primary" data-toggle="collapse" aria-expanded="false" (click)="openModal(template)">Editar</a>
+              <a class="btn btn-primary" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"
+                (click)="dettalleAlarma(alarma.appMovil,templa)">Información</a>
             </div>
           </div>
         </div>
+
+        <!--Modal para cambiar el estado de la alarma-->
+
+        <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Descripción</label>
+
+                    <textarea name="descripcion" [(ngModel)]="descripcion" class="form-control rounded-0" id="exampleFormControlTextarea2"   ngmodel required rows="3"></textarea>
+                  </div>
+                <small id="emailHelp" class="form-text text-muted">Puede ingresar una descripción asociada a la alarma.</small>
+              </div>
+              
+              <div class="form-check">
+                <input type="checkbox" name="estadoALrma"  [(ngModel)]="estadoALrma" class="form-check-input" id="exampleCheck1"/>
+                <label class="form-check-label" for="exampleCheck1">Alarma Atendida</label>
+              </div>
+              <button type="submit" class="btn btn-primary" (click)="ActualizarAlarma(alarma)">Guardar</button>
+            </form>
+          </div>
+
+        </ng-template>
+        <!-- modal end -->
+
+
+
       </div>
     </div>
   </div>
+
+
+  <!-- Modal para  el botón de información -->
+  <ng-template #templa>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <strong>Los Usuarios involucrados en la alarma son: </strong> <br>
+      <ul>
+        <li *ngFor="let item of usuarios">
+          {{item.nombre}} {{item.apellido}} <strong>Identificado con #: </strong>{{item.numeroDocumento}} <br>
+
+        </li>
+
+      </ul>
+    </div>
+  </ng-template>
+  <!-- modal end  boton información-->
+
+
+
+
+
+
 
 
 

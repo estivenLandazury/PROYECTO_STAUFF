@@ -7,6 +7,7 @@ import { RolUsuario } from '../../models/rolUsuario';
 import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +26,15 @@ export class LoginComponent implements OnInit {
 
   /*http://127.0.0.1:8000/getUsu/?q=Steven&l=Land%C3%A1zury%20Salazar*/
 
-  constructor(private ServiciosService: ServiciosService, private router: Router) { }
+  constructor(private ServiciosService: ServiciosService, private router: Router,private toastr: ToastrService) { }
 
 
+  error(info:string){
+    this.toastr.error('Error', info, {
+      timeOut: 3000
+    });
+
+  }
 
 
 
@@ -38,14 +45,14 @@ export class LoginComponent implements OnInit {
       result => {
       this.user = result[0]
         if (result[0] == null) {
-          alert("verifique la contraseña o nombre de usuario")
+          this.error("verifique la contraseña o nombre de usuario")
           this.username = "",
             this.password1 = ""
         }
 
       },
 
-      e => { alert("verifique la contraseña o nombre de usuario") },
+      e => {  this.error("verifique la contraseña o nombre de usuario") },
 
       () => {
 
@@ -56,13 +63,13 @@ export class LoginComponent implements OnInit {
 
           },
 
-          e => { alert("verifique la contraseña o nombre de usuario") },
+          e => { this.error("verifique la contraseña o nombre de usuario") },
 
           () => {
             this.ServiciosService.getRolUsuario(this.usuario.id).subscribe(
               result => { this.rolUsuario = result },
 
-              e => { alert("verifique") },
+              e => {  this.error("verifique") },
 
               () => {
                 for (let i = 0; i < this.rolUsuario.length; i++) {
@@ -82,7 +89,7 @@ export class LoginComponent implements OnInit {
                       localStorage.setItem("usuario", JSON.stringify(data));
                       this.router.navigateByUrl('/Admin')
                     },
-                      e => { alert("Verifque su contraseña o nombre de usuario") },
+                      e => {  this.error("Verifque su contraseña o nombre de usuario") },
 
                       () => {
                       this.username = "",
@@ -92,7 +99,7 @@ export class LoginComponent implements OnInit {
                     )
 
                   } else {
-                    alert("la cuenta de usurio, no tiene permisos de acceso a la sesión")
+                    this.error("la cuenta de usurio, no tiene permisos de acceso a la sesión")
                     this.username = "",
                       this.password1 = ""
                   }

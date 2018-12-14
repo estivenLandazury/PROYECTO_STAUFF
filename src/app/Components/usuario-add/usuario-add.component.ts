@@ -12,6 +12,7 @@ import {User} from '../../models/user';
 import {AlertsModule, AlertsService} from 'angular-alert-module';
 import { Howl } from 'howler'
 import { ManillaUsuario } from '../../models/manillaUsuario';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuario-add',
@@ -58,7 +59,29 @@ export class UsuarioAddComponent implements OnInit {
   usu:Usuario
 
 
-  constructor(private ServiciosService: ServiciosService) {
+  constructor(private ServiciosService: ServiciosService,private toastr: ToastrService) {
+
+  }
+
+  error(info:string){
+    this.toastr.error('Error', info, {
+      timeOut: 3000
+    });
+
+  }
+
+
+  succes(info:string){
+    this.toastr.success('SeccesFull', info, {
+      timeOut: 3000
+    });
+
+  }
+
+  warning(info:string){
+    this.toastr.warning('Warning', info, {
+      timeOut: 3000
+    });
 
   }
 
@@ -82,9 +105,9 @@ export class UsuarioAddComponent implements OnInit {
     this.ServiciosService.getManillas().subscribe((data => this.manillas = data));
   }
 
+
   addUser() {
     /*** Rol Usuariio */
-
     
     let usuario: Usuario = {
       id: "",
@@ -97,12 +120,14 @@ export class UsuarioAddComponent implements OnInit {
     }
     this.usu=usuario;
     this.ServiciosService.añadirUsuario(this.usu).subscribe(
-      x=> {alert("se registro el usuario correctamente")},
-      e=> alert("Verifque que los campos esten diligeniados correctamente"),
+      x=> {
+        
+        this.succes("se registro el usuario correctamente")},
+      e=> this.warning("Verifque que los campos esten diligeniados correctamente"),
       ()=> this.addRolUsuario()
 
     );
-
+      
 
   }
 
@@ -150,7 +175,7 @@ export class UsuarioAddComponent implements OnInit {
     )
     
   
-    
+  
 
   }
 
@@ -188,12 +213,12 @@ export class UsuarioAddComponent implements OnInit {
 
     },
     
-    e=>{alert("Error Al añadir Dispositivo")
+    e=>{this.error("Error Al añadir Dispositivo")
     this.macid="",
     this.nombre="";},
 
     ()=>{ 
-      alert("Has a ñadido un dispositivo correctamente")
+      this.succes("Has a ñadido un dispositivo correctamente")
       this.macid="",
       this.nombreDispositivo="";
     }
@@ -212,8 +237,8 @@ this.ServiciosService.añadirEncargado(encargado).subscribe(result=>{
 
 }, 
 
-e=>{ alert("Error al asociar los usuarios")},
-()=>{alert("Se han asociado los usuarios exitosoamente")})
+e=>{ this.error("Error al asociar los usuarios")},
+()=>{this.succes("Se han asociado los usuarios exitosoamente")})
  }
 
 
@@ -232,9 +257,9 @@ e=>{ alert("Error al asociar los usuarios")},
 
   
   },
-  e=>{ alert("Error al asociar la manilla")},
+  e=>{ this.error("Error al asociar la manilla")},
 
-  ()=>{alert("Has asociado la manilla correctamente al usuario")
+  ()=>{this.succes("Has asociado la manilla correctamente al usuario")
 
 }
 
@@ -250,6 +275,9 @@ e=>{ alert("Error al asociar los usuarios")},
     this.getTipoUsuarios()
     this.getUsuarios()
     this.getManillas()
+
+ 
+    
 
     /*var sound = new Howl({
       src: ['../../../assets/BOMB_SIREN-BOMB_SIREN-247265934.wav'],

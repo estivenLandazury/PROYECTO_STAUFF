@@ -77,4 +77,14 @@ i.fa.fa-comments.fa-5x {
   a.btn.btn-primary {
     width: 44%;
     margin-right: 2%;
+    color: white;
+}
+
+
+div#SCROLL {
+  overflow-x: hidden;
+  overflow: scroll;
+  height: 417px;
+
+  height: 417px;
 }
