@@ -5,12 +5,17 @@
 
 
 
-
+p.hotmail {
+  margin-left: -75%;
+  /* margin-top: -2%; */
+}
 
 
 i.fas.fa-user-circle {
     width: 37%;
     height: 36%;
+    margin-left: 39%;
+    margin-top: -45%;
     font-size: 249%;
     color: #2C3E50;
 }
@@ -18,7 +23,7 @@ i.fas.fa-user-circle {
 
 mat-sidenav.example-container.mat-drawer.mat-sidenav.ng-tns-c3-0.ng-trigger.ng-trigger-transform.mat-drawer-side.ng-star-inserted 
 {
-  background: #2c3e50 !important;
+  background: #155b6d !important;
   color: white;
 }
 
@@ -35,13 +40,6 @@ mat-sidenav.example-container.mat-drawer.mat-sidenav.ng-tns-c3-0.ng-trigger.ng-t
   background-color: transparent;
   border: 0;
 }
-
-
-
-
-
-
-
 
 
   
@@ -190,3 +188,6 @@ mat-sidenav.example-container.mat-drawer.mat-sidenav.ng-tns-c3-0.ng-trigger.ng-t
       overflow: hidden;
       color: #fff;
   }
+
+
+  

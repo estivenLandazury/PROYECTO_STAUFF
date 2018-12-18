@@ -29,6 +29,8 @@ export class AlertComponent implements OnInit {
   alrmasResultas: Alarma[]
   alrmasNoResultas: Alarma[]
   date = new Date();
+  tipoAlarma:string
+  tipoAlrma1:String
 
   usuarioApp: UsuarioApp
   Encargado: Encargado
@@ -41,6 +43,7 @@ export class AlertComponent implements OnInit {
   totalAlarmasResueltas: number;
   totalAlarmasSinResolver: number;
   todasLasAlarmas: number;
+
   AlrmasActuales: number;
 
   public modalRef: BsModalRef;
@@ -168,6 +171,8 @@ if(this.estadoALrma===undefined){
 
       this.alarmas = result;
       this.todasLasAlarmas = this.alarmas.length
+      this.tipoAlrma1="Total"
+      this.tipoAlarma=""
 
 
     })
@@ -180,6 +185,8 @@ if(this.estadoALrma===undefined){
 
       this.alrmasResultas = result;
       this.totalAlarmasResueltas = this.alrmasResultas.length
+      this.tipoAlarma="Resueltas"
+      this.tipoAlrma1=""
 
 
       this.alarmas = this.alrmasResultas
@@ -193,6 +200,10 @@ if(this.estadoALrma===undefined){
       this.totalAlarmasSinResolver = result.length
       this.alrmasNoResultas = result;
       this.alarmas = this.alrmasNoResultas
+      this.tipoAlarma="Sin Resolver"
+      this.tipoAlrma1=""
+
+
 
 
     })

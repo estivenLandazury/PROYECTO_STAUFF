@@ -31,25 +31,28 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="card card-signin my-5">
             <div class="card-body">
-              <h5 class="card-title text-center">Sign In</h5>
+              <h5 class="card-title text-center"> <strong>Fundación Valle Del Lili</strong></h5>
               <form (ngSubmit)="comprobarLogin()" class="form-signin">
                 <div class="form-label-group">
-                  <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Name User"
+                  <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Nombre de usuario"
                     required autofocus [(ngModel)]="username">
-                  <label for="inputEmail">User Name</label>
+                  <label for="inputEmail">Nombre usuario</label>
                 </div>
 
                 <div class="form-label-group">
-                  <input type="password" name="password1" id="inputPassword" class="form-control" placeholder="Password"
+                  <input type="password" name="password1" id="inputPassword" class="form-control" placeholder="Contraseña"
                     required [(ngModel)]="password1">
-                  <label for="inputPassword">Password</label>
+                  <label for="inputPassword">Contraseña</label>
                 </div>
-
+ <!-- 
                 <div class="custom-control custom-checkbox mb-3">
+                 
+                 
                   <input type="checkbox" class="custom-control-input" id="customCheck1">
                   <label class="custom-control-label" for="customCheck1">Remember password</label>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
+                 -->
+                <button type="submit" class="btn btn-lg btn btn-success btn-block text-uppercase">Ingresar</button>
 
                 <!-- <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Register</button> -->
 

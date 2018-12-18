@@ -22,7 +22,7 @@
 
 <body>
 
-    
+
 
   <div class="container">
     <div id="TitleTable">
@@ -30,40 +30,40 @@
     </div>
 
     <ng-template #content let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Información Detallada</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-         <strong>Nombre: </strong> {{nombre}} {{apellido}} <br>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Información Detallada</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Nombre: </strong> {{nombre}} {{apellido}} <br>
 
-         <strong>Rol: </strong> {{nombreRol}} <br>
-         <strong>Tipo Documento: </strong> {{nombreDocumento}} <br>
-         <strong>Número Documento: </strong> {{numeroDocumento}} <br>
-         <strong>Tiene a cargo: </strong> {{encargados.length}} Persona/s <br>
-         <ul> 
-           <li *ngFor="let item of encargado">
-           <strong>Estos son: </strong> {{item.nombre}} {{item.apellido}} {{item.numeroDocumento}} <br>
+        <strong>Rol: </strong> {{nombreRol}} <br>
+        <strong>Tipo Documento: </strong> {{nombreDocumento}} <br>
+        <strong>Número Documento: </strong> {{numeroDocumento}} <br>
+        <strong>Tiene a cargo: </strong> {{encargados.length}} Persona/s <br>
+        <ul>
+          <li *ngFor="let item of encargado">
+            <strong>Estos son: </strong> {{item.nombre}} {{item.apellido}} {{item.numeroDocumento}} <br>
 
           </li>
 
-         </ul>
-         
+        </ul>
 
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
-        </div>
-      </ng-template>
-      
-      
-      
-     
 
-   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+      </div>
+    </ng-template>
+
+
+
+
+
+
 
 
     <form class="form-inline my-2 my-lg-0">
@@ -104,7 +104,7 @@
               <th scope="col">Identificador</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">Acción</th>
+
             </tr>
 
           </thead>
@@ -113,13 +113,6 @@
               <td> {{users.numeroDocumento}}</td>
               <td> {{users.nombre}}</td>
               <td> {{users.apellido}}</td>
-              <td>
-
-                <!-- <a [routerLink]="['/Admin/Actualizar_Usuario']" class="btn btn-success ml-3">Editar</a> -->
-
-                <button class="btn btn-danger ml-3" (click)="delete(event, users)">Eliminar</button>
-                <!-- <a [routerLink]="['/Admin/Añadir_Usuario']" class="btn btn-success ml-3">Agregar</a>-->
-              </td>
 
             </tr>
 
@@ -127,6 +120,7 @@
         </table>
       </div>
     </div>
+
 
 
 
@@ -147,7 +141,7 @@
 
 
 
- 
+
 
 </body>
 

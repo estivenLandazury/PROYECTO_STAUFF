@@ -31,11 +31,11 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-3">
-              <i class="fa fa-comments fa-5x"></i>
+                <i class="fas fa-check fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
               <div class="huge">{{totalAlarmasResueltas}}</div>
-              <div>AlrmasResueltas!</div>
+              <div>Alarmas Resueltas!</div>
             </div>
           </div>
         </div>
@@ -53,11 +53,11 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-3">
-              <i class="fa fa-tasks fa-5x"></i>
+              <i class="fas fa-list-ul fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
               <div class="huge">{{todasLasAlarmas}}</div>
-              <div>Todas Las alarmas!</div>
+              <div>Todas Las Alarmas!</div>
             </div>
           </div>
         </div>
@@ -75,11 +75,11 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-3">
-              <i class="fa fa-shopping-cart fa-5x"></i>
+              <i class="fas fa-times fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
               <div class="huge">{{totalAlarmasSinResolver}}</div>
-              <div>Alrmas sin Resolver</div>
+              <div>Alarmas sin Resolver</div>
             </div>
           </div>
         </div>
@@ -92,6 +92,10 @@
         </button>
       </div>
     </div>
+
+
+
+
 
     <!-- 
     <div class="col-lg-3 col-md-6">
@@ -120,9 +124,82 @@
   </div>
 
 
-
+<div id="TituloTabla"> <Strong>{{tipoAlrma1}} Alarmas {{tipoAlarma}}</Strong></div>
 
   <div id="SCROLL">
+
+
+      <div id="tableScroll">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Atendida</th>
+                  <th scope="col">Fecha Registro</th>
+                  <th scope="col">Acción</th>
+                </tr>
+      
+              </thead>
+              <tbody>
+                <tr *ngFor="let alarma of alarmas">
+                  <td> {{alarma.descripcion}}</td>
+                  <td> {{alarma.solucionado}}</td>
+                  <td> {{alarma.fechaRegistro}}</td>
+                  <td>
+      
+                    <!-- <a [routerLink]="['/Admin/Actualizar_Usuario']" class="btn btn-success ml-3">Editar</a> -->
+      
+                    <div id="botones">
+                        <a class="btn btn-info" data-toggle="collapse" aria-expanded="false" (click)="openModal(template)">Editar</a>
+                        <a class="btn btn-info" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"
+                          (click)="dettalleAlarma(alarma.appMovil,templa)">Información</a>
+                      </div>
+                    <!-- <a [routerLink]="['/Admin/Añadir_Usuario']" class="btn btn-success ml-3">Agregar</a>-->
+                  </td>
+
+                  <ng-template #template>
+                      <div class="modal-header">
+                        <h4 class="modal-title pull-left">Modal</h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Descripción</label>
+            
+                                <textarea name="descripcion" [(ngModel)]="descripcion" class="form-control rounded-0" id="exampleFormControlTextarea2"   ngmodel required rows="3"></textarea>
+                              </div>
+                            <small id="emailHelp" class="form-text text-muted">Puede ingresar una descripción asociada a la alarma.</small>
+                          </div>
+                          
+                          <div class="form-check">
+                            <input type="checkbox" name="estadoALrma"  [(ngModel)]="estadoALrma" class="form-check-input" id="exampleCheck1"/>
+                            <label class="form-check-label" for="exampleCheck1">Alarma Atendida</label>
+                          </div>
+                          <button type="submit" class="btn btn-primary" (click)="ActualizarAlarma(alarma)">Guardar</button>
+                        </form>
+                      </div>
+            
+                    </ng-template>
+                    <!-- modal end -->
+      
+                </tr>
+      
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!--   
+
     <div class="row card-group my-2">
       <div *ngFor="let alarma of alarmas" class="col-lg-4">
         <div class="card" style="width: 18rem;">
@@ -145,7 +222,7 @@
           </div>
         </div>
 
-        <!--Modal para cambiar el estado de la alarma-->
+        
 
         <ng-template #template>
           <div class="modal-header">
@@ -174,16 +251,23 @@
           </div>
 
         </ng-template>
-        <!-- modal end -->
+        
 
 
 
       </div>
     </div>
   </div>
+    -->
+
 
 
   <!-- Modal para  el botón de información -->
+
+
+  
+
+
   <ng-template #templa>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Modal</h4>

@@ -44,6 +44,9 @@
   .form-label-group input {
     border-radius: 2rem;
   }
+  .container {
+    margin-top: 5%;
+}
   
   .form-label-group>input,
   .form-label-group>label {

@@ -6,10 +6,21 @@
 
 
 div#tableScroll {
-    overflow: scroll;
-    height: 260%;
-    margin-top:3%;
+    overflow-x: hidden;
+    height: 417px;
+    margin-top: 2%;
+    height: 417px;
 }
+
+
+div#tableScroll[_ngcontent-c4] {
+    overflow-x: hidden;
+    /* height: 417px; */
+    margin-top: 2%;
+    height: 417px;
+    overflow: scroll;
+}
+
 table.table.table-hover {
     margin-top: 0%;
 }

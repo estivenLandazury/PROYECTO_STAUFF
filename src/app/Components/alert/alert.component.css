@@ -74,17 +74,24 @@ i.fa.fa-comments.fa-5x {
   }
 
 
-  a.btn.btn-primary {
+  a.btn.btn-info {
     width: 44%;
     margin-right: 2%;
     color: white;
 }
 
 
+div#TituloTabla {
+  margin-top: 6%;
+  text-align: center;
+  font-size: 140%;
+}
+
+
 div#SCROLL {
   overflow-x: hidden;
-  overflow: scroll;
   height: 417px;
+  margin-top: 2%;
 
   height: 417px;
 }
