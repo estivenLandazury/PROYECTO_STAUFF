@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { Alarma } from '../../models/alarma';
 import { ServiciosService } from '../../dataServices/servicios.service';
 import { Howl } from 'howler'
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -27,7 +28,7 @@ export class AdminComponent implements OnInit {
   estadoAlarma: Alarma[]
 
 
-  constructor(private router:Router,private ServiciosService: ServiciosService) { }
+  constructor(private router:Router,private ServiciosService: ServiciosService,private toastr: ToastrService) { }
 
 
 
@@ -59,7 +60,10 @@ export class AdminComponent implements OnInit {
 
  
 
-
+  warning(info:string){
+    this.toastr.warning('Warning', info, {
+      timeOut: 100000
+    });}
 
 
   propagaciónAlarma(valorLista: number) {
@@ -91,6 +95,8 @@ export class AdminComponent implements OnInit {
           html5: true
         });
         sound.play();
+
+        this.warning("Menor de edad en posible riesgo")
 
       }
 
