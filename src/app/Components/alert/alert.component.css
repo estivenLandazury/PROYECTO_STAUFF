@@ -3,6 +3,14 @@ body {
     width: 94%;
     margin-left: 2%;
 }
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: 7px;
+}
 
 .panel-heading {
     background: #2e6197;
