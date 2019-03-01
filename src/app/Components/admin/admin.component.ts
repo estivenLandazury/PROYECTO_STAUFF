@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit {
 
 
       )
-    }, 15000);
+    }, 8000);
   }
 
 
